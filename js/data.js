@@ -235,67 +235,67 @@ const SARVX_DATA = {
     }
   ],
 
-  // Interactive Web & App Architecture Showcase Items
+  // Interactive 3D Websites & Applications Showcase Items (Real UI Screens)
   appShowcases: [
     {
-      id: "web-flagship",
+      id: "webgl-flagship",
       title: "3D Interactive Web Flagship",
-      category: "CREATIVE TECH · THREE.JS · NEXT.JS",
+      category: "CREATIVE TECH · THREE.JS · NEXT.JS · WEBGL",
       badge: "60 FPS WEBGL",
-      headline: "Sub-Second Cinematic Web Architecture",
-      description: "Immersive 3D product visualizer and high-fashion digital flagship featuring custom WebGL fragment shaders, fluid physics, and sub-800ms Time to Interactive (TTI).",
+      headline: "Sub-Second Cinematic 3D Web Flagship",
+      description: "Interactive 3D WebGL digital hypercar showroom featuring real-time fragment shaders, 360° camera orbit, dynamic color customizer, and sub-800ms Time to Interactive (TTI).",
       specs: [
         { label: "Architecture", value: "Next.js 15 App Router" },
-        { label: "Graphics", value: "Three.js & Custom GLSL" },
+        { label: "Graphics Engine", value: "Three.js & Custom GLSL" },
         { label: "Performance", value: "99/100 Lighthouse Score" },
         { label: "Conversion Lift", value: "+62% Average Order Value" }
       ],
-      previewUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=85"
+      previewUrl: "assets/ui/webgl_flagship.jpg"
     },
     {
-      id: "mobile-app",
-      title: "Native Mobile Application",
-      category: "CROSS-PLATFORM · REACT NATIVE · IOS & ANDROID",
-      badge: "NATIVE PERFORMANCE",
-      headline: "Fluid Gesture Physics & Offline-First Sync",
-      description: "A luxury lifestyle on-demand mobile application engineered for buttery 120Hz micro-interactions, real-time push engines, biometric authentication, and frictionless Apple/Google Pay.",
+      id: "threed-timepiece",
+      title: "3D Spatial Luxury Timepiece",
+      category: "3D SPATIAL AUDIO · EXPLODED CAD · LUXURY",
+      badge: "SPATIAL AUDIO 3D",
+      headline: "Micro-Mechanical 3D Exploded Engine",
+      description: "An ultra-luxury 3D spatial audio timepiece experience featuring an exploded 482-component tourbillon mechanism, dynamic audio frequency telemetry, and tactile haptic controls.",
       specs: [
-        { label: "Framework", value: "React Native + Reanimated 3" },
-        { label: "State Engine", value: "Zustand + TanStack Query" },
-        { label: "Push Notification", value: "OneSignal & Braze SDK" },
-        { label: "Store Rating", value: "4.9 ★ (12K+ Reviews)" }
+        { label: "3D Engine", value: "WebGL + Web Audio API" },
+        { label: "Mechanism", value: "482 Exploded CAD Parts" },
+        { label: "Sound System", value: "Spatial 3D Audio Feedback" },
+        { label: "Order Velocity", value: "$4.8M Direct Pre-Orders" }
       ],
-      previewUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1400&q=85"
+      previewUrl: "assets/ui/threed_timepiece.jpg"
     },
     {
-      id: "saas-dashboard",
-      title: "Enterprise SaaS Web Platform",
-      category: "CLOUD PLATFORM · REACT · FASTAPI · POSTGRES",
-      badge: "ENTERPRISE SCALABILITY",
-      headline: "Real-Time Telemetry & AI Agent Workflows",
-      description: "A high-security, multi-tenant enterprise intelligence platform managing millions of event streams daily with sub-50ms query latency, role-based access control, and automated report generation.",
+      id: "threed-estate",
+      title: "3D Architectural Virtual Tour",
+      category: "3D REAL ESTATE · DIGITAL TWIN · BIM CAD",
+      badge: "ARCHITECTURAL TWIN",
+      headline: "Real-Time 3D Skyscraper Digital Twin",
+      description: "A photorealistic 3D architectural digital twin featuring interactive floorplan layer slicing, panoramic day-to-night lighting sliders, unit telemetry, and 360° virtual walkthroughs.",
       specs: [
-        { label: "Frontend", value: "React + TypeScript + Vite" },
-        { label: "Backend", value: "FastAPI + Go Microservices" },
-        { label: "Database", value: "PostgreSQL + Redis Cache" },
-        { label: "Uptime SLA", value: "99.99% Availability" }
+        { label: "Digital Twin", value: "Three.js + BIM CAD Data" },
+        { label: "Lighting", value: "Dynamic Real-Time Raytracing" },
+        { label: "Unit Telemetry", value: "Live Inventory & Pricing Sync" },
+        { label: "Sales Impact", value: "85% Units Reserved Pre-Launch" }
       ],
-      previewUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85"
+      previewUrl: "assets/ui/threed_realestate.jpg"
     },
     {
-      id: "headless-commerce",
-      title: "Headless E-Commerce System",
-      category: "HEADLESS COMMERCE · SHOPIFY PLUS · SANITY",
-      badge: "SUB-SECOND CHECKOUT",
-      headline: "Global Multi-Currency Commerce Engine",
-      description: "A lightning-fast headless e-commerce experience integrating Sanity CMS for rich editorial storytelling and Shopify Plus Storefront API for high-velocity global checkouts.",
+      id: "threed-fashion",
+      title: "3D Digital Couture Flagship",
+      category: "3D CLOTH PHYSICS · HEADLESS COMMERCE",
+      badge: "REAL-TIME CLOTH PHYSICS",
+      headline: "Holographic Liquid Couture E-Commerce",
+      description: "A high-fashion liquid metal 3D digital flagship with real-time GPU cloth physics simulation, 360° runway rotation, interactive fabric shaders, and instant headless checkout.",
       specs: [
-        { label: "Storefront", value: "Hydrogen / Remix / Next.js" },
-        { label: "CMS", value: "Sanity Structured Content" },
-        { label: "Global CDN", value: "Vercel Edge Network" },
-        { label: "Checkout CVR", value: "4.8% Blended Conversion" }
+        { label: "Physics Engine", value: "GPU WebGL Cloth Physics" },
+        { label: "Commerce Engine", value: "Headless Shopify Storefront" },
+        { label: "Render Fidelity", value: "4K Holographic Mesh" },
+        { label: "Checkout CVR", value: "5.4% Global Conversion" }
       ],
-      previewUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=85"
+      previewUrl: "assets/ui/threed_fashion.jpg"
     }
   ],
 
