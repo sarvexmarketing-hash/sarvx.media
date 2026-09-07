@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Directory & Portfolio (68+ Brands) — SARVX.MEDIA</title>
+  <meta name="description" content="Explore the complete client roster of 68+ enterprise brands, luxury jewellers, real estate developers, hospitality retreats, and healthcare institutions scaled by SARVEX.">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Core & Component Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .clients-page-hero {
+      padding: 10rem var(--container-padding) 4rem;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    
+    .clients-hero-header {
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-silver);
+      margin-bottom: 2rem;
+      padding: 6px 14px;
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .back-home-link:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateX(-4px);
+    }
+
+    .clients-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .clients-stat-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .clients-stat-val {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .clients-stat-lbl {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Directory Controls */
+    .directory-controls-wrap {
+      max-width: var(--container-max);
+      margin: 3.5rem auto 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .directory-search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .directory-search-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.25rem 1.1rem 3.25rem;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .directory-search-input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .directory-search-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 1.1rem;
+    }
+
+    .directory-count-indicator {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-silver);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+  <!-- Ambient Shading Background -->
+  <div class="ambient-canvas-wrapper" aria-hidden="true">
+    <canvas id="ambientCanvas"></canvas>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" aria-label="SARVX.MEDIA Homepage">
+        <span class="brand-dot"></span>
+        <span class="brand-name">SARVX.MEDIA</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">← HOME</a>
+        <a href="index.html#services" class="nav-link">CAPABILITIES</a>
+        <a href="index.html#apps-showcase" class="nav-link">WEB & APPS</a>
+        <a href="clients.html" class="nav-link active">CLIENTS (68+)</a>
+        <a href="index.html#case-studies" class="nav-link">CASE STUDIES</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="nav-cta-btn open-contact-modal" aria-label="Start a project with SARVX">
+          <span>START A PROJECT</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="clients-page-hero">
+      <div class="clients-hero-header">
+        <a href="index.html#clients" class="back-home-link">← Back to Overview</a>
+        
+        <div class="section-label">FULL CLIENT DIRECTORY</div>
+        <h1 class="display-title-huge" style="font-size: clamp(2.5rem, 6vw, 5.5rem); margin-top: 0.5rem;">
+          68+ CLIENTS WE'VE SCALED
+        </h1>
+        <p style="color: var(--text-silver); font-size: 1.25rem; max-width: 68ch; margin-top: 1rem; line-height: 1.6;">
+          Explore the complete roster of 68+ enterprises, hyper-growth startups, luxury jewellers, real estate developers, hospitality retreats, and healthcare networks powered by SARVEX.
+        </p>
+
+        <!-- Stats Bar -->
+        <div class="clients-stats-bar">
+          <div class="clients-stat-box">
+            <span class="clients-stat-val">68+</span>
+            <span class="clients-stat-lbl">Active & Scaled Brands</span>
+          </div>
+          <div class="clients-stat-box">
+            <span class="clients-stat-val">06</span>
+            <span class="clients-stat-lbl">Industry Verticals</span>
+          </div>
+          <div class="clients-stat-box">
+            <span class="clients-stat-val">₹100Cr+</span>
+            <span class="clients-stat-lbl">Pipelines & Revenue</span>
+          </div>
+          <div class="clients-stat-box">
+            <span class="clients-stat-val">99.4%</span>
+            <span class="clients-stat-lbl">Client Retention Rate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Marquee Ticker -->
+    <div class="client-marquee-container" style="margin: 3rem 0;">
+      <div class="client-marquee-track">
+        <!-- Dynamically populated from SARVX_DATA.clients -->
+      </div>
+    </div>
+
+    <!-- Directory Directory Section -->
+    <section class="section" style="padding-top: 1rem;">
+      <div style="max-width: var(--container-max); margin: 0 auto; width: 100%;">
+        
+        <!-- Controls: Search & Category Filter Tabs -->
+        <div class="directory-controls-wrap">
+          <div class="directory-search-box">
+            <span class="directory-search-icon">🔍</span>
+            <input 
+              type="text" 
+              id="clientSearchInput" 
+              class="directory-search-input" 
+              placeholder="Search by client name, industry, or keyword (e.g., Diamond, Real Estate, Retreat, School, Tyres)..."
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="client-filter-tabs">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div class="directory-count-indicator">
+            <span id="directoryResultsCount">SHOWING ALL 68+ CLIENTS</span>
+            <span style="color: var(--text-muted);">UPDATED FOR 2026</span>
+          </div>
+        </div>
+
+        <!-- Full Directory Matrix Grid -->
+        <div class="clients-matrix-grid" id="fullClientsDirectoryGrid">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- What's Included in Every Package -->
+        <div class="package-inclusions-wrap" style="margin-top: 6rem;">
+          <div class="section-label">ENTERPRISE SERVICE STANDARDS</div>
+          <h2 class="display-title-large" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem);">WHAT'S INCLUDED IN EVERY ENGAGEMENT</h2>
+          <p style="color: var(--text-silver); font-size: 1.05rem; max-width: 60ch; margin-top: 0.5rem;">
+            Regardless of the scope or engagement tier, every client receives our highest standard of direct access and strategic rigor.
+          </p>
+
+          <div class="package-inclusions-grid">
+            <!-- Dynamically populated from SARVX_DATA.packageStandards -->
+          </div>
+        </div>
+
+        <!-- Bottom CTA Card -->
+        <div style="margin-top: 6rem; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 4rem 2.5rem; text-align: center;">
+          <div class="section-label" style="justify-content: center;">SCALE YOUR BRAND WITH SARVX</div>
+          <h2 class="display-title-large" style="font-size: clamp(2rem, 4vw, 3.2rem); margin-top: 0.5rem;">READY TO JOIN OUR CLIENT ROSTER?</h2>
+          <p style="color: var(--text-silver); font-size: 1.15rem; max-width: 55ch; margin: 1rem auto 2rem;">
+            We engineer custom websites, mobile applications, and full-funnel digital marketing ecosystems built to dominate your category.
+          </p>
+          <button class="nav-cta-btn open-contact-modal" style="padding: 16px 36px; font-size: 13px;">
+            REQUEST A CUSTOM PROPOSAL →
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="brand-logo">
+          <span class="brand-dot"></span>
+          <span class="brand-name">SARVX.MEDIA</span>
+        </a>
+        <p class="footer-tagline">WEBSITES × MOBILE APPLICATIONS × DIGITAL MARKETING.</p>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-col-title">NAVIGATION</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Capabilities</a></li>
+          <li><a href="index.html#apps-showcase">Web & Apps</a></li>
+          <li><a href="clients.html">Client Directory (68+)</a></li>
+          <li><a href="index.html#case-studies">Case Studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-legal-col">
+        <div class="footer-col-title">DIRECTORY VERIFICATION</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          All brand marks, logos, and registered trademarks belong to their respective client owners and are displayed under verified client partnership authorization.
+        </p>
+        <div class="footer-copy" style="margin-top: 1.5rem;">
+          © 2026 SARVX.MEDIA. ALL RIGHTS RESERVED.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div id="contactModal" class="contact-modal-backdrop" aria-hidden="true">
+    <div class="contact-modal-dialog" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="modal-badge">INITIATE ENGAGEMENT</div>
+        <h3 id="modalTitle" class="modal-title">START A PROJECT</h3>
+        <button class="modal-close-btn" aria-label="Close modal">✕</button>
+      </div>
+      <form class="contact-form" id="projectForm">
+        <div class="form-group">
+          <label class="form-label" for="clientName">YOUR NAME / COMPANY</label>
+          <input class="form-input" type="text" id="clientName" required placeholder="e.g. Elena Rostova / Apex Luxury" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="clientEmail">CORPORATE EMAIL</label>
+          <input class="form-input" type="email" id="clientEmail" required placeholder="elena@company.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="projectType">PRIMARY OBJECTIVE</label>
+          <select class="form-input" id="projectType">
+            <option value="Full-Stack Digital Marketing & Growth">Full-Stack Digital Marketing & Growth</option>
+            <option value="Custom 3D Website / Web Flagship">Custom 3D Website / Web Flagship</option>
+            <option value="Native Mobile App (iOS / Android)">Native Mobile App (iOS / Android)</option>
+            <option value="Performance Media Buying & ROAS Scaling">Performance Media Buying & ROAS Scaling</option>
+            <option value="Complete Brand Overhaul & GTM">Complete Brand Overhaul & GTM</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="projectBudget">TARGET MONTHLY / PROJECT BUDGET</label>
+          <select class="form-input" id="projectBudget">
+            <option value="₹2,00,000 - ₹5,00,000 / Month">₹2,00,000 - ₹5,00,000 / Month</option>
+            <option value="₹5,00,000 - ₹15,00,000 / Month">₹5,00,000 - ₹15,00,000 / Month</option>
+            <option value="₹15,00,000+ / Enterprise Tier">₹15,00,000+ / Enterprise Tier</option>
+          </select>
+        </div>
+        <button type="submit" class="nav-cta-btn" style="width: 100%; justify-content: center; padding: 14px; margin-top: 1rem;">
+          SUBMIT PROPOSAL REQUEST →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
