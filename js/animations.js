@@ -333,7 +333,7 @@ class SarvxAnimationEngine {
     if (!sec || !stageItems.length) return;
 
     const stageCount = stageItems.length;
-    const totalDash = 144.51;
+    const totalDash = 113.1;
 
     ScrollTrigger.create({
       trigger: sec,
