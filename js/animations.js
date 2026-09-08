@@ -12,12 +12,15 @@ class SarvxAnimationEngine {
   init() {
     try { this.initLenis(); } catch(e) { console.warn('initLenis error:', e); }
     try { this.initCursor(); } catch(e) { console.warn('initCursor error:', e); }
+    try { this.initKineticTextTokens(); } catch(e) { console.warn('initKineticTextTokens error:', e); }
     try { this.initHeroChoreography(); } catch(e) { console.warn('initHero error:', e); }
     try { this.initIntroChoreography(); } catch(e) { console.warn('initIntro error:', e); }
     try { this.initAboutParallax(); } catch(e) { console.warn('initAbout error:', e); }
     try { this.initProblemNoiseScrub(); } catch(e) { console.warn('initProblem error:', e); }
     try { this.initSignatureSystemPinned(); } catch(e) { console.warn('initSignature error:', e); }
+    try { this.initElvaProgressRing(); } catch(e) { console.warn('initElvaProgressRing error:', e); }
     try { this.initServicesAccordions(); } catch(e) { console.warn('initServices error:', e); }
+    try { this.initElvaFeatureHoverTracking(); } catch(e) { console.warn('initElvaFeatureHoverTracking error:', e); }
     try { this.initPerformanceCounters(); } catch(e) { console.warn('initPerformance error:', e); }
     try { this.initWebBrowser3D(); } catch(e) { console.warn('initWebBrowser error:', e); }
     try { this.initCaseStudiesStacking(); } catch(e) { console.warn('initCaseStudies error:', e); }
@@ -33,7 +36,53 @@ class SarvxAnimationEngine {
       if (typeof ScrollTrigger !== 'undefined') {
         ScrollTrigger.refresh();
       }
-    }, 200);
+    }, 250);
+  }
+
+  /* --- 0. Elva Labs Kinetic Liquid Text Tokenizer (Word-by-Word Blur Reveal) --- */
+  initKineticTextTokens() {
+    // Select elements to tokenize with deblurring words
+    const targetSelectors = [
+      '.about-lead',
+      '.about-subtext',
+      '.section-label',
+      '.funnel-stage-headline',
+      '.funnel-stage-desc',
+      '.modal-heading',
+      '.modal-subheading'
+    ];
+
+    targetSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (el.dataset.tokenized) return;
+        el.dataset.tokenized = 'true';
+
+        const rawText = el.innerText || el.textContent;
+        const words = rawText.split(/\s+/).filter(w => w.length > 0);
+        if (!words.length) return;
+
+        el.innerHTML = '';
+        words.forEach((word, idx) => {
+          const span = document.createElement('span');
+          span.className = 'elva-token';
+          span.textContent = word + (idx < words.length - 1 ? ' ' : '');
+          span.style.transitionDelay = `${Math.min(idx * 0.035, 0.6)}s`;
+          el.appendChild(span);
+        });
+
+        // Setup Intersection Observer or ScrollTrigger for deblurring
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              el.querySelectorAll('.elva-token').forEach(token => token.classList.add('revealed'));
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        observer.observe(el);
+      });
+    });
   }
 
   /* --- 1. Lenis + GSAP ScrollTrigger Integration --- */
@@ -163,22 +212,47 @@ class SarvxAnimationEngine {
       .fromTo(phrases[3], { opacity: 0, y: 60, scale: 0.88, letterSpacing: '0.1em' }, { opacity: 1, y: 0, scale: 1, letterSpacing: '-0.04em', duration: 1.2 }, 4.0);
   }
 
-  /* --- 4. Intro Words Sequential Activation --- */
+  /* --- 4. Intro Pinned Cinematic Narrative Sequence (§20) --- */
   initIntroChoreography() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    const words = document.querySelectorAll('.intro-word');
-    if (!words.length) return;
+    const sec = document.querySelector('.pinned-intro-section');
+    const statements = document.querySelectorAll('.intro-statement');
+    if (!sec || statements.length < 6) return;
 
-    words.forEach((word) => {
-      ScrollTrigger.create({
-        trigger: word,
-        start: "top 75%",
-        end: "bottom 35%",
-        onEnter: () => word.classList.add('highlight'),
-        onLeaveBack: () => word.classList.remove('highlight')
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sec,
+        start: "top top",
+        end: "+=3200",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1
+      }
     });
+
+    // 0: WE DON'T DO MARKETING.
+    tl.set(statements[0], { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' })
+      .to(statements[0], { opacity: 0, y: -45, scale: 0.94, filter: 'blur(10px)', duration: 1 }, 1)
+
+      // 1: WE CREATE MOVEMENT.
+      .fromTo(statements[1], { opacity: 0, y: 55, scale: 0.92, filter: 'blur(10px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 1.3)
+      .to(statements[1], { opacity: 0, y: -45, scale: 0.94, filter: 'blur(10px)', duration: 1 }, 2.5)
+
+      // 2: ATTENTION.
+      .fromTo(statements[2], { opacity: 0, y: 55, scale: 0.92, filter: 'blur(10px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 2.8)
+      .to(statements[2], { opacity: 0, y: -45, scale: 0.94, filter: 'blur(10px)', duration: 1 }, 4.0)
+
+      // 3: DESIRE.
+      .fromTo(statements[3], { opacity: 0, y: 55, scale: 0.92, filter: 'blur(10px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 4.3)
+      .to(statements[3], { opacity: 0, y: -45, scale: 0.94, filter: 'blur(10px)', duration: 1 }, 5.5)
+
+      // 4: ACTION.
+      .fromTo(statements[4], { opacity: 0, y: 55, scale: 0.92, filter: 'blur(10px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 5.8)
+      .to(statements[4], { opacity: 0, y: -45, scale: 0.94, filter: 'blur(10px)', duration: 1 }, 7.0)
+
+      // 5: SARVX.
+      .fromTo(statements[5], { opacity: 0, y: 65, scale: 0.88, filter: 'blur(14px)' }, { opacity: 1, y: 0, scale: 1.05, filter: 'blur(0px)', duration: 1.2 }, 7.3);
   }
 
   /* --- 5. Editorial About Multi-Speed Parallax --- */
@@ -245,7 +319,7 @@ class SarvxAnimationEngine {
     }
   }
 
-  /* --- 7. Signature 1/6 Interactive Pinned System --- */
+  /* --- 7. Signature 1/6 Interactive Pinned System with Elva Circular Ring --- */
   initSignatureSystemPinned() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
@@ -254,19 +328,33 @@ class SarvxAnimationEngine {
     const stageItems = document.querySelectorAll('.system-stage-item');
     const visualFrames = document.querySelectorAll('.system-visual-frame');
     const progressDots = document.querySelectorAll('.system-progress-dot');
+    const circleBar = document.querySelector('.elva-progress-circle-bar');
+    const stepBadge = document.querySelector('.elva-step-badge');
     if (!sec || !stageItems.length) return;
 
     const stageCount = stageItems.length;
+    const totalDash = 144.51;
 
     ScrollTrigger.create({
       trigger: sec,
       start: "top top",
-      end: `+=${stageCount * 800}`,
+      end: `+=${stageCount * 850}`,
       pin: true,
       scrub: 1,
+      anticipatePin: 1,
       onUpdate: (self) => {
         const progress = self.progress;
         const activeIdx = Math.min(stageCount - 1, Math.floor(progress * stageCount));
+
+        // Update Circular SVG Progress Ring
+        if (circleBar) {
+          const offset = totalDash * (1 - progress);
+          circleBar.style.strokeDashoffset = `${offset}`;
+        }
+
+        if (stepBadge) {
+          stepBadge.textContent = `0${activeIdx + 1} / 0${stageCount}`;
+        }
 
         if (currentNum) {
           const numStr = String(activeIdx + 1).padStart(2, '0');
@@ -300,6 +388,15 @@ class SarvxAnimationEngine {
     });
   }
 
+  /* --- 7b. Elva Circular Progress Ring Initialization Helper --- */
+  initElvaProgressRing() {
+    const ring = document.querySelector('.elva-progress-circle-bar');
+    if (ring) {
+      ring.style.strokeDasharray = '144.51';
+      ring.style.strokeDashoffset = '144.51';
+    }
+  }
+
   /* --- 8. Services Accordions --- */
   initServicesAccordions() {
     const items = document.querySelectorAll('.service-row-item');
@@ -312,6 +409,35 @@ class SarvxAnimationEngine {
       });
     });
   }
+
+  /* --- 8b. Elva Spring Physics Floating Device Hover Follower --- */
+  initElvaFeatureHoverTracking() {
+    const featureRows = document.querySelectorAll('.service-row-item, .client-brand-card, .pillar-card');
+    if (!featureRows.length || typeof SpringSolver === 'undefined') return;
+
+    featureRows.forEach(row => {
+      const springX = new SpringSolver({ stiffness: 280, damping: 22 });
+      const springY = new SpringSolver({ stiffness: 280, damping: 22 });
+
+      row.addEventListener('mousemove', (e) => {
+        const rect = row.getBoundingClientRect();
+        const relX = (e.clientX - rect.left - rect.width / 2) * 0.15;
+        const relY = (e.clientY - rect.top - rect.height / 2) * 0.15;
+
+        springX.updateConfig({ toValue: relX }).start();
+        springY.updateConfig({ toValue: relY }).start();
+        
+        row.style.transform = `translate3d(${springX.currentValue}px, ${springY.currentValue}px, 0)`;
+      });
+
+      row.addEventListener('mouseleave', () => {
+        springX.updateConfig({ toValue: 0 }).start();
+        springY.updateConfig({ toValue: 0 }).start();
+        row.style.transform = 'translate3d(0, 0, 0)';
+      });
+    });
+  }
+
 
   /* --- 9. Performance Metrics Counter Animation --- */
   initPerformanceCounters() {
@@ -407,52 +533,95 @@ class SarvxAnimationEngine {
     });
   }
 
-  /* --- 13. Emotional Outro Pacing --- */
+  /* --- 13. Pinned Emotional Outro Choreography (§25) --- */
   initEmotionalOutro() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    const phrases = document.querySelectorAll('.emotional-phrase');
-    phrases.forEach((phrase) => {
-      gsap.fromTo(phrase,
-        { opacity: 0.1, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.5,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: phrase,
-            start: "top 75%",
-            end: "bottom 40%",
-            scrub: 1
-          }
-        }
-      );
+    const sec = document.querySelector('.pinned-outro-section');
+    const phrases = document.querySelectorAll('.outro-phrase-item');
+    if (!sec || phrases.length < 5) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sec,
+        start: "top top",
+        end: "+=2600",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1
+      }
     });
+
+    // 0: PEOPLE DON'T REMEMBER ADS.
+    tl.set(phrases[0], { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' })
+      .to(phrases[0], { opacity: 0, y: -40, scale: 0.95, filter: 'blur(8px)', duration: 1 }, 1)
+
+      // 1: THEY REMEMBER HOW THEY FELT.
+      .fromTo(phrases[1], { opacity: 0, y: 50, scale: 0.94, filter: 'blur(8px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 1.2)
+      .to(phrases[1], { opacity: 0, y: -40, scale: 0.95, filter: 'blur(8px)', duration: 1 }, 2.4)
+
+      // 2: IDEAS.
+      .fromTo(phrases[2], { opacity: 0, y: 50, scale: 0.92, filter: 'blur(8px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 2.6)
+      .to(phrases[2], { opacity: 0, y: -40, scale: 0.95, filter: 'blur(8px)', duration: 1 }, 3.8)
+
+      // 3: MOMENTS.
+      .fromTo(phrases[3], { opacity: 0, y: 50, scale: 0.92, filter: 'blur(8px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1 }, 4.0)
+      .to(phrases[3], { opacity: 0, y: -40, scale: 0.95, filter: 'blur(8px)', duration: 1 }, 5.2)
+
+      // 4: MOVEMENT.
+      .fromTo(phrases[4], { opacity: 0, y: 60, scale: 0.88, filter: 'blur(12px)' }, { opacity: 1, y: 0, scale: 1.05, filter: 'blur(0px)', duration: 1.2 }, 5.4);
   }
 
-  /* --- 14. Final CTA Giant Scaling Choreography --- */
+  /* --- 14. Final CTA Giant Scaling Choreography (§26) --- */
   initFinalCTA() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     const sec = document.querySelector('.final-cta-section');
     const moveWord = document.querySelector('.cta-word-move');
     const ctaAction = document.querySelector('.cta-actions-wrap');
+    const readyBadge = document.querySelector('.cta-ready-badge');
+    const hugeWords = document.querySelectorAll('.cta-huge-word');
     if (!sec || !moveWord) return;
+
+    // Ensure ctaAction is fully visible initially
+    if (ctaAction) {
+      gsap.set(ctaAction, { opacity: 1, y: 0, scale: 1 });
+    }
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sec,
         start: "top top",
-        end: "+=2200",
+        end: "+=1800",
         pin: true,
-        scrub: 1
+        scrub: 1,
+        anticipatePin: 1
       }
     });
 
-    tl.to(moveWord, { scale: 3.8, opacity: 0.08, filter: "blur(16px)", ease: "power2.in" }, 0);
+    // "MOVE." scales massively beyond viewport with liquid blur
+    tl.to(moveWord, { scale: 3.2, opacity: 0.1, filter: "blur(14px)", ease: "power2.in" }, 0);
+    
+    // Other words fade out slightly to keep focus on button and liquid WebGL
+    if (hugeWords.length) {
+      hugeWords.forEach((word) => {
+        if (!word.classList.contains('cta-word-move')) {
+          tl.to(word, { opacity: 0.25, y: -30, filter: "blur(4px)" }, 0);
+        }
+      });
+    }
+
+    if (readyBadge) {
+      tl.to(readyBadge, { opacity: 0.4, y: -15 }, 0);
+    }
+
+    // Enhance CTA button focus without dropping below viewport
     if (ctaAction) {
-      tl.fromTo(ctaAction, { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, ease: "power3.out" }, 1.2);
+      tl.fromTo(ctaAction, 
+        { opacity: 0.85, scale: 0.96, y: 0 }, 
+        { opacity: 1, scale: 1.05, y: 0, ease: "power2.out", duration: 1 }, 
+        0.2
+      );
     }
   }
 

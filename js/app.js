@@ -3,11 +3,14 @@
    ========================================================================== */
 
 function initApp() {
-  // 1. Initialize Ambient Canvas Shader safely
+  // 1. Initialize Three.js Liquid Metaball Shader & Ambient Canvas safely
   try {
+    if (window.ElvaThreeMetaballsEngine) {
+      window.threeMetaballsEngine = new ElvaThreeMetaballsEngine('threeWebglContainer');
+    }
     const ambientEngine = new AmbientCanvasEngine('ambientCanvas');
   } catch (err) {
-    console.warn('AmbientCanvasEngine init warning:', err);
+    console.warn('Canvas engines init warning:', err);
   }
 
   // 2. Render Dynamic Digital Marketing, Web & App Modules
@@ -41,10 +44,11 @@ if (document.readyState === 'loading') {
   initApp();
 }
 
-/* --- Preloader Sequence --- */
+/* --- Preloader Sequence with Elva Shadow Numeral Glow --- */
 function runPreloaderSequence(onComplete) {
   const preloader = document.querySelector('.preloader');
   const numberEl = document.querySelector('.preloader-number');
+  const shadowNumberEl = document.querySelector('.preloader-shadow-number');
   const barFill = document.querySelector('.preloader-bar-fill');
   const logoEl = document.querySelector('.preloader-logo');
   const taglineEl = document.querySelector('.preloader-tagline');
@@ -90,12 +94,14 @@ function runPreloaderSequence(onComplete) {
     progress = Math.round(eased * 100);
 
     numberEl.textContent = `${progress}%`;
+    if (shadowNumberEl) shadowNumberEl.textContent = `${progress}%`;
     if (barFill) barFill.style.width = `${progress}%`;
 
     if (rawProgress < 1) {
       requestAnimationFrame(updateProgress);
     } else {
       numberEl.textContent = '100%';
+      if (shadowNumberEl) shadowNumberEl.textContent = '100%';
       if (barFill) barFill.style.width = '100%';
 
       setTimeout(() => {
@@ -103,6 +109,7 @@ function runPreloaderSequence(onComplete) {
         if (logoEl) logoEl.style.opacity = '0';
         if (taglineEl) taglineEl.style.opacity = '0';
         if (numberEl) numberEl.style.opacity = '0';
+        if (shadowNumberEl) shadowNumberEl.style.opacity = '0';
         if (barFill && barFill.parentElement) barFill.parentElement.style.opacity = '0';
 
         setTimeout(() => {
@@ -115,6 +122,7 @@ function runPreloaderSequence(onComplete) {
 
   requestAnimationFrame(updateProgress);
 }
+
 
 /* --- Render 1/6 Signature Approach Stages --- */
 function renderApproachStages() {
@@ -165,7 +173,7 @@ function renderApproachStages() {
   });
 }
 
-/* --- Render Comprehensive Digital Marketing Services Accordion --- */
+/* --- Render Comprehensive Digital Marketing & Engineering Services --- */
 function renderServicesAccordion() {
   const container = document.querySelector('.services-accordion-list');
   if (!container || !window.SARVX_DATA) return;
@@ -174,69 +182,28 @@ function renderServicesAccordion() {
   container.innerHTML = '';
 
   services.forEach((s) => {
-    const row = document.createElement('div');
+    const row = document.createElement('a');
+    row.href = `service.html?id=${s.id}`;
     row.className = 'service-row-item';
+    row.style.display = 'block';
+    row.style.textDecoration = 'none';
+    row.setAttribute('aria-label', `Explore ${s.title} capability`);
+
     row.innerHTML = `
       <div class="service-row-main">
         <div class="service-num-title">
           <span class="service-num">${s.number}</span>
           <h3 class="service-title">${s.title}</h3>
         </div>
-        <div class="service-arrow-icon">↘</div>
+        <div class="service-arrow-icon" style="font-family: var(--font-mono);">↗</div>
       </div>
-      <div class="service-drawer-body">
-        <div class="service-drawer-left">
-          <div>
-            <div class="service-subheading">CORE MISSION</div>
-            <h4 style="font-family: var(--font-display); font-size: 1.35rem; color: #FFFFFF; margin: 0.5rem 0 1rem; line-height: 1.3;">${s.headline}</h4>
-            <p style="color: var(--text-silver); font-size: 1.05rem; line-height: 1.6;">${s.description}</p>
-          </div>
-          <div>
-            <div class="service-subheading" style="margin-bottom: 0.75rem;">KEY DELIVERABLES & CAPABILITIES</div>
-            <div class="service-deliverables-grid">
-              ${s.deliverables.map(d => `<div class="service-deliverable-item">${d}</div>`).join('')}
-            </div>
-          </div>
-        </div>
-
-        <div class="service-drawer-right">
-          <div>
-            <div class="service-subheading" style="margin-bottom: 0.75rem;">ENTERPRISE TECH STACK</div>
-            <div class="service-pills-wrap">
-              ${s.techStack.map(t => `<span class="service-tech-pill">${t}</span>`).join('')}
-            </div>
-          </div>
-          <div>
-            <div class="service-subheading" style="margin-bottom: 0.75rem;">TARGET BUSINESS KPIS</div>
-            <div class="service-pills-wrap">
-              ${s.kpis.map(k => `<span class="service-kpi-pill">★ ${k}</span>`).join('')}
-            </div>
-          </div>
-          <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="open-contact-modal" style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: #FFFFFF; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
-              REQUEST ${s.title} PROPOSAL →
-            </button>
-          </div>
-        </div>
+      <div class="service-preview-meta" style="margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <p style="color: var(--text-silver); font-size: 1rem; max-width: 65ch; margin: 0; line-height: 1.5;">${s.headline}</p>
+        <span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: #3fa1e6; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px;">
+          EXPLORE CAPABILITY DEEP-DIVE ↗
+        </span>
       </div>
     `;
-
-    // Toggle drawer on click
-    const headerRow = row.querySelector('.service-row-main');
-    const drawer = row.querySelector('.service-drawer-body');
-    const arrow = row.querySelector('.service-arrow-icon');
-
-    headerRow.addEventListener('click', () => {
-      const isOpen = drawer.style.display === 'grid';
-      // Close all other drawers
-      document.querySelectorAll('.service-drawer-body').forEach(d => d.style.display = 'none');
-      document.querySelectorAll('.service-arrow-icon').forEach(a => a.textContent = '↘');
-
-      if (!isOpen) {
-        drawer.style.display = 'grid';
-        arrow.textContent = '✕';
-      }
-    });
 
     container.appendChild(row);
   });
@@ -342,7 +309,7 @@ function renderAppShowcases() {
           <div class="app-window-dot"></div>
           <div class="app-window-title">SARVX // ${item.badge}</div>
         </div>
-        <img class="app-mockup-img" src="${item.previewUrl}" alt="${item.title}">
+        <canvas class="app-mockup-canvas" id="appMockupCanvas"></canvas>
       </div>
 
       <div class="app-info-column">
@@ -368,6 +335,14 @@ function renderAppShowcases() {
         </div>
       </div>
     `;
+
+    // Render interactive procedural canvas simulation (no static photos)
+    const canvas = displayContainer.querySelector('#appMockupCanvas');
+    if (canvas && window.ProceduralCanvasArt) {
+      setTimeout(() => {
+        ProceduralCanvasArt.createAppVisual(canvas, item.visualType || item.id);
+      }, 50);
+    }
   }
 
   // Initial render with first item
@@ -734,11 +709,13 @@ function initMobileNav() {
 
   btn.addEventListener('click', () => {
     overlay.classList.toggle('active');
+    btn.classList.toggle('active');
   });
 
   links.forEach((l) => {
     l.addEventListener('click', () => {
       overlay.classList.remove('active');
+      btn.classList.remove('active');
     });
   });
 }

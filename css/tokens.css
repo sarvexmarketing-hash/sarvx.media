@@ -53,6 +53,15 @@
   /* --- Cursor Dimensions --- */
   --cursor-size: 10px;
   --cursor-size-hover: 64px;
+
+  /* --- Elva Labs Kinetic & Shimmer Tokens --- */
+  --elva-blur-initial: 14px;
+  --elva-blur-clear: 0px;
+  --elva-glow-neon: linear-gradient(135deg, #0989d8 0%, #850dee 100%);
+  --elva-glow-cyan: rgba(9, 137, 216, 0.45);
+  --elva-glow-purple: rgba(133, 13, 238, 0.45);
+  --elva-glass-bg: rgba(35, 35, 35, 0.4);
+  --elva-glass-blur: blur(20px) saturate(180%);
 }
 
 /* Reduced Motion Override */
@@ -64,3 +73,4 @@
     scroll-behavior: auto !important;
   }
 }
+

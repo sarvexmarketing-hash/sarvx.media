@@ -31,7 +31,8 @@
 </head>
 <body>
 
-  <!-- Ambient Canvas & Film Grain -->
+  <!-- Three.js Liquid Metaball Shader Canvas & Ambient Fallback -->
+  <div id="threeWebglContainer"></div>
   <canvas id="ambientCanvas"></canvas>
   <div class="film-grain"></div>
 
@@ -41,13 +42,14 @@
   </div>
   <div class="custom-cursor-follower"></div>
 
-  <!-- Cinematic Preloader -->
+  <!-- Cinematic Preloader with Elva Glowing Shadow Numerals -->
   <div class="preloader" id="globalPreloader" aria-hidden="true" onclick="this.classList.add('completed')">
     <div class="preloader-brand">
       <div class="preloader-logo">SARVX.MEDIA</div>
       <div class="preloader-tagline">WEBSITES × MOBILE APPS × DIGITAL MARKETING</div>
     </div>
-    <div class="preloader-progress-wrap">
+    <div class="preloader-progress-wrap" style="position: relative; display: flex; align-items: center; justify-content: center;">
+      <div class="preloader-shadow-number" id="preloaderShadowNum">0%</div>
       <div class="preloader-number" id="preloaderNum">0%</div>
       <div class="preloader-bar-track">
         <div class="preloader-bar-fill" id="preloaderFill"></div>
@@ -59,6 +61,7 @@
     (function() {
       var p = document.getElementById('globalPreloader');
       var num = document.getElementById('preloaderNum');
+      var shadowNum = document.getElementById('preloaderShadowNum');
       var fill = document.getElementById('preloaderFill');
       var start = performance.now();
       var dur = 750;
@@ -67,6 +70,7 @@
         var eased = 1 - Math.pow(1 - progress, 3);
         var val = Math.round(eased * 100);
         if (num) num.textContent = val + '%';
+        if (shadowNum) shadowNum.textContent = val + '%';
         if (fill) fill.style.width = val + '%';
         if (progress < 1) {
           requestAnimationFrame(tick);
@@ -110,7 +114,23 @@
         <span class="sound-label">SOUND: OFF</span>
       </button>
 
-      <button class="nav-cta-btn open-contact-modal">START A PROJECT</button>
+      <!-- Elva Labs Style Action Button with 8-Dot Constellation & SVG Neon Border Draw -->
+      <button class="btn-elva open-contact-modal" aria-label="Start a Project">
+        <svg class="btn-elva-border">
+          <defs>
+            <linearGradient id="elvaGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0989d8" />
+              <stop offset="100%" stop-color="#850dee" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" rx="14" fill="none" stroke="url(#elvaGrad1)" width="calc(100% - 4px)" height="calc(100% - 4px)"></rect>
+        </svg>
+        <div class="dots">
+          <div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <span>START A PROJECT</span>
+      </button>
 
       <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
         <span class="mobile-menu-line"></span>
@@ -118,6 +138,7 @@
       </button>
     </div>
   </header>
+
 
   <!-- Mobile Navigation Overlay -->
   <div class="mobile-nav-overlay" aria-hidden="true">
@@ -151,19 +172,19 @@
         <div class="hero-phrase-container">
           <!-- Phrase 0 -->
           <div class="hero-phrase active">
-            <h1 class="display-title-huge">BRANDS DESERVE MORE THAN ATTENTION.</h1>
+            <h1 class="display-title-huge">BRANDS<br>DESERVE MORE<br>THAN<br>ATTENTION.</h1>
           </div>
           <!-- Phrase 1 -->
           <div class="hero-phrase">
-            <h2 class="display-title-huge">THEY DESERVE IMPACT.</h2>
+            <h2 class="display-title-huge">THEY<br>DESERVE<br>IMPACT.</h2>
           </div>
           <!-- Phrase 2 -->
           <div class="hero-phrase">
-            <h2 class="display-title-huge">THEY DESERVE TO SCALE.</h2>
+            <h2 class="display-title-huge">THEY<br>DESERVE<br>TO SCALE.</h2>
           </div>
           <!-- Phrase 3 -->
           <div class="hero-phrase">
-            <h2 class="display-title-huge" style="letter-spacing: -0.05em; font-size: clamp(4rem, 14vw, 15rem);">SARVX.MEDIA</h2>
+            <h2 class="display-title-huge hero-logo-phrase" style="letter-spacing: -0.04em; font-size: clamp(3.5rem, 13vw, 14.5rem);">SARVX.MEDIA</h2>
           </div>
         </div>
       </div>
@@ -176,17 +197,38 @@
       </div>
     </section>
 
-    <!-- 2. INTRO SECTION ("WE CREATE MOVEMENT") -->
-    <section class="section intro-section" aria-label="Introduction">
-      <div style="max-width: 1400px; margin: 0 auto; width: 100%;">
-        <div class="section-label">THE FULL-STACK PHILOSOPHY</div>
-        <div class="intro-word-list">
-          <div class="display-title-large intro-word">WE BUILD PRODUCTS.</div>
-          <div class="display-title-large intro-word">WE SCALE AUDIENCES.</div>
-          <div class="display-title-large intro-word">WEBSITES.</div>
-          <div class="display-title-large intro-word">APPLICATIONS.</div>
-          <div class="display-title-large intro-word">MARKETING.</div>
-          <div class="display-title-large intro-word" style="color: #FFFFFF;">THAT'S SARVX.</div>
+    <!-- 2. INTRO SECTION (PINNED NARRATIVE SEQUENCE — §20) -->
+    <section class="section pinned-intro-section" aria-label="Introduction">
+      <div class="intro-backdrop-layer">
+        <div class="intro-glow-circle"></div>
+      </div>
+      <div class="intro-content-wrapper">
+        <div class="section-label">THE PHILOSOPHY & MANIFESTO</div>
+        <div class="intro-sequence-container">
+          <!-- Step 0 -->
+          <div class="intro-statement active" data-step="0">
+            <h2 class="display-title-huge">WE DON'T DO<br>MARKETING.</h2>
+          </div>
+          <!-- Step 1 -->
+          <div class="intro-statement" data-step="1">
+            <h2 class="display-title-huge">WE CREATE<br>MOVEMENT.</h2>
+          </div>
+          <!-- Step 2 -->
+          <div class="intro-statement" data-step="2">
+            <h2 class="display-title-huge">ATTENTION.</h2>
+          </div>
+          <!-- Step 3 -->
+          <div class="intro-statement" data-step="3">
+            <h2 class="display-title-huge">DESIRE.</h2>
+          </div>
+          <!-- Step 4 -->
+          <div class="intro-statement" data-step="4">
+            <h2 class="display-title-huge">ACTION.</h2>
+          </div>
+          <!-- Step 5 -->
+          <div class="intro-statement" data-step="5">
+            <h2 class="display-title-huge hero-logo-phrase" style="letter-spacing: -0.04em;">SARVX.</h2>
+          </div>
         </div>
       </div>
     </section>
@@ -212,8 +254,8 @@
       <div class="services-header">
         <div class="section-label">CORE DISCIPLINES & CAPABILITIES</div>
         <h2 class="display-title-large">WEBSITES, APPS & MARKETING</h2>
-        <p style="color: var(--text-silver); font-size: 1.15rem; max-width: 60ch; margin-top: 1rem;">
-          Click any discipline to expand full technical deliverables, enterprise tech stacks, and target business KPIs.
+        <p style="color: var(--text-silver); font-size: 1.15rem; max-width: 65ch; margin-top: 1rem;">
+          Select any discipline below to open its dedicated capability page, technical scope, enterprise tech stack, and execution blueprint.
         </p>
       </div>
 
@@ -248,6 +290,15 @@
       <div class="system-container">
         <div class="system-left">
           <div class="section-label">THE SARVX METHODOLOGY // 1/6 FULL-LIFECYCLE ENGINE</div>
+
+          <!-- Elva Labs Circular SVG Progress Ring & Step Tracker -->
+          <div class="elva-progress-ring-wrap">
+            <svg class="elva-progress-svg" viewBox="0 0 52 52" aria-hidden="true">
+              <circle class="elva-progress-circle-bg" cx="26" cy="26" r="23"></circle>
+              <circle class="elva-progress-circle-bar" cx="26" cy="26" r="23"></circle>
+            </svg>
+            <div class="elva-step-badge">01 / 06</div>
+          </div>
           
           <div class="system-counter-wrap">
             <span class="system-counter-current">01</span>
@@ -268,6 +319,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- 7. INTERACTIVE 5-STAGE CUSTOMER FUNNEL MATRIX -->
     <section id="funnel" class="section funnel-framework-section" aria-label="5-Stage Customer Journey Funnel">
@@ -317,8 +369,8 @@
         </div>
 
         <!-- Show All Clients CTA Button -->
-        <div style="text-align: center; margin-top: 3.5rem; display: flex; justify-content: center;">
-          <a href="clients.html" class="nav-cta-btn" style="padding: 16px 38px; font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+        <div class="show-all-clients-wrap" style="text-align: center; margin-top: 3rem; display: flex; justify-content: center;">
+          <a href="clients.html" class="nav-cta-btn show-all-clients-btn">
             <span>SHOW ALL 68+ CLIENTS & FULL DIRECTORY →</span>
           </a>
         </div>
@@ -326,8 +378,8 @@
         <!-- What's Included in Every Package -->
         <div class="package-inclusions-wrap">
           <div class="section-label">ENTERPRISE SERVICE STANDARDS</div>
-          <h3 class="display-title-large" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem);">WHAT'S INCLUDED IN EVERY ENGAGEMENT</h3>
-          <p style="color: var(--text-silver); font-size: 1rem; max-width: 60ch; margin-top: 0.5rem;">
+          <h3 class="display-title-large package-standards-heading" style="font-size: clamp(1.4rem, 3.5vw, 2.8rem);">WHAT'S INCLUDED IN EVERY ENGAGEMENT</h3>
+          <p class="package-standards-subtext" style="color: var(--text-silver); font-size: 0.95rem; max-width: 60ch; margin-top: 0.5rem; line-height: 1.5;">
             Regardless of the scope or engagement tier, every client receives our highest standard of direct access and strategic rigor.
           </p>
 
@@ -400,32 +452,40 @@
       </div>
     </section>
 
-    <!-- 14. FINAL EMOTIONAL SECTION -->
-    <section class="emotional-section" aria-label="Emotional Statement">
-      <div style="max-width: 1100px; margin: 0 auto; width: 100%;">
-        <p class="emotional-phrase" style="font-family: var(--font-mono); font-size: clamp(12px, 1.4vw, 15px); letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem;">
-          THE BEST DIGITAL EXPERIENCES DON'T JUST EXIST.
-        </p>
-        <div class="display-title-large emotional-phrase" style="margin-bottom: 1.5rem;">THEY CREATE MOVEMENT.</div>
-        <div class="display-title-large emotional-phrase" style="margin-bottom: 1.5rem; color: var(--text-silver);">SOFTWARE EXCELLENCE.</div>
-        <div class="display-title-large emotional-phrase" style="margin-bottom: 1.5rem; color: var(--text-muted);">COMPOUNDING REVENUE.</div>
-        <div class="display-title-large emotional-phrase" style="color: #FFFFFF; text-shadow: 0 0 50px rgba(255,255,255,0.4);">DOMINANCE.</div>
+    <!-- 14. FINAL OUTRO SECTION (PINNED EMOTIONAL NARRATIVE — §25) -->
+    <section class="section emotional-section pinned-outro-section" aria-label="Cinematic Outro">
+      <div class="outro-content-wrapper" style="max-width: 1200px; margin: 0 auto; width: 100%; text-align: center;">
+        <div class="section-label">THE CONCLUSION</div>
+        <div class="outro-phrase-stack">
+          <div class="display-title-large emotional-phrase outro-phrase-item active">PEOPLE DON'T<br>REMEMBER ADS.</div>
+          <div class="display-title-large emotional-phrase outro-phrase-item">THEY REMEMBER<br>HOW THEY FELT.</div>
+          <div class="display-title-huge emotional-phrase outro-phrase-item" style="color: var(--text-silver);">IDEAS.</div>
+          <div class="display-title-huge emotional-phrase outro-phrase-item" style="color: var(--text-muted);">MOMENTS.</div>
+          <div class="display-title-huge emotional-phrase outro-phrase-item" style="color: #FFFFFF; text-shadow: 0 0 60px rgba(255,255,255,0.45);">MOVEMENT.</div>
+        </div>
       </div>
     </section>
 
-    <!-- 15. FINAL MASSIVE CTA -->
+    <!-- 15. FINAL MASSIVE CTA (§26) -->
     <section class="final-cta-section" aria-label="Call to Action">
-      <div class="section-label">READY TO BUILD & SCALE?</div>
+      <div class="cta-ready-badge">READY?</div>
       <div class="cta-huge-word">LET'S</div>
       <div class="cta-huge-word">MAKE</div>
       <div class="cta-huge-word">SOMETHING</div>
       <div class="cta-huge-word cta-word-move" style="color: #FFFFFF;">MOVE.</div>
 
       <div class="cta-actions-wrap">
-        <button class="magnetic-btn-huge open-contact-modal">START A PROJECT →</button>
-        <p style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase;">
+        <button class="magnetic-btn-huge open-contact-modal" style="display: inline-flex; align-items: center; gap: 14px;">
+          <span>START A PROJECT →</span>
+          <div class="dots">
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+          </div>
+        </button>
+        <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; color: var(--text-muted); text-transform: uppercase; margin-top: 1.5rem;">
           LIMITED TO 4 ENTERPRISE ENGAGEMENTS PER QUARTER
         </p>
+
       </div>
     </section>
 
@@ -487,9 +547,9 @@
   <div class="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
     <div class="contact-modal-card">
       <button class="modal-close-btn" aria-label="Close modal">✕</button>
-      <div class="section-label">PROJECT & PRODUCT INQUIRY</div>
-      <h2 id="contactTitle" class="display-title-large" style="font-size: clamp(2rem, 4vw, 3.2rem);">LET'S BUILD & SCALE SOMETHING EXCEPTIONAL.</h2>
-      <p style="font-size: 1rem; color: var(--text-muted); margin-top: 0.5rem;">Tell us about your project (Website, Mobile App, SaaS, or Digital Marketing), timeline, and vision.</p>
+      <div class="section-label" style="margin-bottom: 0.25rem;">PROJECT & PRODUCT INQUIRY</div>
+      <h2 id="contactTitle" class="display-title-large modal-heading">LET'S BUILD & SCALE SOMETHING EXCEPTIONAL.</h2>
+      <p class="modal-subheading">Tell us about your project (Website, Mobile App, SaaS, or Digital Marketing), timeline, and vision.</p>
 
       <form class="contact-form">
         <div class="form-input-group">
@@ -504,7 +564,7 @@
 
         <div class="form-input-group">
           <label class="form-label" for="projectScope">PRIMARY PROJECT TYPE</label>
-          <input class="form-input" id="projectScope" type="text" placeholder="e.g. Custom 3D Website, iOS/Android Mobile App, SaaS Platform, Performance Marketing" required>
+          <input class="form-input" id="projectScope" type="text" placeholder="e.g. Custom 3D Website, iOS/Android App, SaaS" required>
         </div>
 
         <div class="form-input-group">
@@ -512,9 +572,9 @@
           <input class="form-input" id="monthlyBudget" type="text" placeholder="e.g. $25K - $100K+" required>
         </div>
 
-        <div class="form-input-group">
+        <div class="form-input-group full-width">
           <label class="form-label" for="projectMessage">PROJECT DETAILS & TECHNICAL REQUIREMENTS</label>
-          <textarea class="form-textarea" id="projectMessage" rows="3" placeholder="Briefly describe your product vision, tech stack preferences, timeline, or marketing goals..." required></textarea>
+          <textarea class="form-textarea" id="projectMessage" rows="2" placeholder="Briefly describe your product vision, tech stack preferences, timeline, or marketing goals..." required></textarea>
         </div>
 
         <button type="submit" class="form-submit-btn">TRANSMIT INQUIRY →</button>
@@ -523,6 +583,7 @@
   </div>
 
   <!-- CDN Scripts for High-Performance Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capabilities & Services Detail — SARVX.MEDIA</title>
+  <meta name="description" content="Explore SARVX.MEDIA's enterprise capabilities: 3D WebGL websites, native mobile applications, cloud SaaS platforms, performance marketing, and retention engines.">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Core & Component Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sections.css">
+
+  <style>
+    .service-page-hero {
+      padding: 9.5rem var(--container-padding) 3.5rem;
+      background: radial-gradient(circle at 50% 0%, rgba(9, 137, 216, 0.08) 0%, transparent 65%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .service-hero-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .service-nav-bar {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      margin-bottom: 2.5rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .service-nav-bar::-webkit-scrollbar { display: none; }
+
+    .service-tab-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-full);
+      color: var(--text-silver);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .service-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .service-tab-btn.active {
+      background: #FFFFFF;
+      color: #000000;
+      font-weight: 700;
+      border-color: #FFFFFF;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+    }
+
+    .service-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-num-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      padding: 4px 12px;
+      background: rgba(9, 137, 216, 0.15);
+      border: 1px solid rgba(9, 137, 216, 0.4);
+      color: #3fa1e6;
+      border-radius: var(--radius-full);
+    }
+
+    .service-title-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-headline-lead {
+      font-family: var(--font-mono);
+      font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-silver);
+      line-height: 1.5;
+      max-width: 68ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-desc-body {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      color: var(--text-silver);
+      line-height: 1.7;
+      max-width: 65ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .service-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Grid Sections */
+    .service-content-section {
+      padding: 5rem var(--container-padding);
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .service-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 900px) {
+      .service-grid-2col {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .service-card-box {
+      background: #0B0B0B;
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .service-card-box:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .service-card-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .deliverables-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .deliverable-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1rem;
+      color: var(--text-silver);
+      line-height: 1.5;
+    }
+
+    .deliverable-icon {
+      color: #3fa1e6;
+      font-size: 1.1rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .tech-pills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .tech-pill-large {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-full);
+      color: #FFFFFF;
+      transition: all 0.25s ease;
+    }
+
+    .tech-pill-large:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .kpi-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .kpi-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .kpi-card-val {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #3fa1e6;
+    }
+
+    .kpi-card-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Process Workflow */
+    .process-steps-wrap {
+      margin-top: 4rem;
+      padding-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .process-timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .process-step-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+
+    .process-step-num {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.2);
+      margin-bottom: 0.75rem;
+    }
+
+    .process-step-heading {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step-body {
+      font-size: 0.95rem;
+      color: var(--text-silver);
+      line-height: 1.5;
+    }
+
+    /* Next / Prev Navigation */
+    .service-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 0;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .service-nav-direction {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-decoration: none;
+      color: #FFFFFF;
+      transition: transform 0.2s ease;
+    }
+
+    .service-nav-direction:hover {
+      transform: translateX(4px);
+    }
+
+    .service-nav-direction.prev:hover {
+      transform: translateX(-4px);
+    }
+
+    .service-nav-dir-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .service-nav-dir-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+  <!-- Background WebGL Container -->
+  <div id="threeWebglContainer"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header" role="banner">
+    <a href="index.html" class="brand-logo-link">
+      <span class="brand-dot"></span>
+      <span>SARVX.MEDIA</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link">← HOME</a>
+      <a href="service.html" class="nav-link active">CAPABILITIES (10)</a>
+      <a href="index.html#apps-showcase" class="nav-link">WEB & APPS</a>
+      <a href="clients.html" class="nav-link">CLIENTS (68+)</a>
+      <a href="index.html#case-studies" class="nav-link">CASE STUDIES</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-elva open-contact-modal" aria-label="Start a Project">
+        <svg class="btn-elva-border">
+          <defs>
+            <linearGradient id="elvaGradService" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0989d8" />
+              <stop offset="100%" stop-color="#850dee" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" rx="14" fill="none" stroke="url(#elvaGradService)" width="calc(100% - 4px)" height="calc(100% - 4px)"></rect>
+        </svg>
+        <div class="dots">
+          <div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <span>START A PROJECT</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="service-page-hero">
+      <div class="service-hero-inner">
+        
+        <!-- Service Tabs Quick Switcher -->
+        <div class="service-nav-bar" id="serviceNavBar" aria-label="Switch Capability">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="service-badge-row">
+          <span class="service-num-pill" id="serviceNumPill">01 // DISCIPLINE</span>
+          <div class="section-label" style="margin-bottom: 0;">ENTERPRISE CAPABILITY BREAKDOWN</div>
+        </div>
+
+        <h1 class="service-title-display" id="serviceTitle">
+          CUSTOM WEBSITES & 3D WEB EXPERIENCES
+        </h1>
+
+        <p class="service-headline-lead" id="serviceHeadline">
+          FLAGSHIP DIGITAL EXPERIENCES ENGINEERED FOR 60FPS IMMERSION & HIGH CONVERSION.
+        </p>
+
+        <p class="service-desc-body" id="serviceDesc">
+          We design and develop custom, award-winning digital flagships, 3D WebGL interactive experiences, and headless e-commerce platforms. Built with Next.js, React, Three.js, and Headless Shopify.
+        </p>
+
+        <div class="service-hero-actions">
+          <button class="magnetic-btn-huge open-contact-modal" id="serviceInquiryBtn" style="display: inline-flex; align-items: center; gap: 12px;">
+            <span>REQUEST PROPOSAL →</span>
+            <div class="dots">
+              <div></div><div></div><div></div><div></div>
+              <div></div><div></div><div></div><div></div>
+            </div>
+          </button>
+
+          <a href="index.html#services" class="back-home-link" style="margin-bottom: 0; padding: 12px 20px;">
+            ← VIEW ALL SERVICES
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Detailed Content -->
+    <section class="service-content-section">
+      
+      <div class="service-grid-2col">
+        
+        <!-- Deliverables Card -->
+        <div class="service-card-box">
+          <h2 class="service-card-title">
+            <span>⚡</span>
+            <span>CORE DELIVERABLES & TECHNICAL SCOPE</span>
+          </h2>
+          <div class="deliverables-checklist" id="deliverablesList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Tech Stack & KPIs Card -->
+        <div class="service-card-box">
+          <h2 class="service-card-title">
+            <span>🛠</span>
+            <span>ENTERPRISE TECH STACK</span>
+          </h2>
+          <p style="color: var(--text-silver); font-size: 0.95rem; margin-bottom: 0.5rem;">Production-grade tooling, modern frameworks, and cloud infrastructure:</p>
+          <div class="tech-pills-container" id="techPillsContainer">
+            <!-- Populated by JS -->
+          </div>
+
+          <h2 class="service-card-title" style="margin-top: 2.5rem;">
+            <span>📈</span>
+            <span>TARGET BUSINESS KPIS</span>
+          </h2>
+          <div class="kpi-metric-grid" id="kpiGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Execution Methodology / Blueprint -->
+      <div class="process-steps-wrap">
+        <div class="section-label">THE 1/6 ARCHITECTURE</div>
+        <h2 class="display-title-large" style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); margin-top: 0.5rem;">
+          SYSTEMATIC EXECUTION BLUEPRINT
+        </h2>
+        <p style="color: var(--text-silver); font-size: 1.1rem; max-width: 60ch; margin-top: 0.75rem;">
+          Every project moves through our hardened 4-phase delivery protocol to ensure zero scope creep and sub-second performance.
+        </p>
+
+        <div class="process-timeline-grid">
+          <div class="process-step-box">
+            <div class="process-step-num">01</div>
+            <div class="process-step-heading">DISCOVERY & AUDIT</div>
+            <div class="process-step-body">Deep technical analysis of current stack, customer journey drop-offs, competitor vulnerabilities, and conversion barriers.</div>
+          </div>
+          <div class="process-step-box">
+            <div class="process-step-num">02</div>
+            <div class="process-step-heading">ARCHITECTURE & PROTOTYPE</div>
+            <div class="process-step-body">Figma design systems, custom 3D shader sandboxes, data pipeline schemas, and rapid wireframe validation.</div>
+          </div>
+          <div class="process-step-box">
+            <div class="process-step-num">03</div>
+            <div class="process-step-heading">PRODUCTION SPRINT</div>
+            <div class="process-step-body">Sub-second Next.js/React engineering, API microservices, server-side tracking, and multi-variant creative testing.</div>
+          </div>
+          <div class="process-step-box">
+            <div class="process-step-num">04</div>
+            <div class="process-step-heading">DEPLOYMENT & SCALE</div>
+            <div class="process-step-body">Global edge CDN deployment, 100/100 Core Web Vitals verification, automated rule bidding, and continuous CRO iteration.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Next / Prev -->
+      <div class="service-pagination" id="servicePagination">
+        <a href="#" class="service-nav-direction prev" id="prevServiceLink">
+          <span class="service-nav-dir-lbl">← PREVIOUS DISCIPLINE</span>
+          <span class="service-nav-dir-title" id="prevServiceTitle">Previous</span>
+        </a>
+        <a href="#" class="service-nav-direction" id="nextServiceLink" style="text-align: right;">
+          <span class="service-nav-dir-lbl">NEXT DISCIPLINE →</span>
+          <span class="service-nav-dir-title" id="nextServiceTitle">Next</span>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="final-cta-section" style="min-height: 60vh; padding: 4rem var(--container-padding);">
+      <div class="cta-ready-badge">READY TO EXECUTE?</div>
+      <div class="cta-huge-word" style="font-size: clamp(2rem, 5.5vw, 5.5rem);">LET'S BUILD</div>
+      <div class="cta-huge-word" style="font-size: clamp(2rem, 5.5vw, 5.5rem); color: #FFFFFF;">TOGETHER.</div>
+
+      <div class="cta-actions-wrap" style="margin-top: 1.5rem;">
+        <button class="magnetic-btn-huge open-contact-modal" style="display: inline-flex; align-items: center; gap: 14px;">
+          <span>START YOUR PROJECT →</span>
+          <div class="dots">
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div style="max-width: var(--container-max); margin: 0 auto; width: 100%;">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="footer-logo">SARVX.MEDIA</div>
+          <p class="footer-tagline">A premier full-stack digital engineering and growth agency crafting 3D websites, native mobile applications, scalable SaaS platforms, and mathematical performance marketing engines.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">NAVIGATION</div>
+          <div class="footer-links-list">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="service.html" class="footer-link">Capabilities</a>
+            <a href="clients.html" class="footer-link">Clients (68+)</a>
+            <a href="index.html#work" class="footer-link">Case Studies</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">CAPABILITIES</div>
+          <div class="footer-links-list">
+            <a href="service.html?id=web-development" class="footer-link">3D WebGL & Next.js</a>
+            <a href="service.html?id=app-development" class="footer-link">Mobile Apps & SaaS</a>
+            <a href="service.html?id=performance-marketing" class="footer-link">Performance Marketing</a>
+            <a href="service.html?id=seo-aeo" class="footer-link">SEO & AI Search (AEO)</a>
+            <a href="service.html?id=retention-lifecycle" class="footer-link">Lifecycle Retention</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">NETWORK</div>
+          <div class="footer-links-list">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram ↗</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn ↗</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">X / Twitter ↗</a>
+            <a href="mailto:build@sarvx.media" class="footer-link">build@sarvx.media</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>© 2026 SARVX.MEDIA — ALL RIGHTS RESERVED</div>
+        <div>GLOBAL HUBS: NY · LDN · TYO · SGP</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div class="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+    <div class="contact-modal-card">
+      <button class="modal-close-btn" aria-label="Close modal">✕</button>
+      <div class="section-label" style="margin-bottom: 0.25rem;">PROJECT & PRODUCT INQUIRY</div>
+      <h2 id="contactTitle" class="display-title-large modal-heading">LET'S BUILD & SCALE SOMETHING EXCEPTIONAL.</h2>
+      <p class="modal-subheading">Tell us about your project, timeline, and vision.</p>
+
+      <form class="contact-form">
+        <div class="form-input-group">
+          <label class="form-label" for="clientName">YOUR NAME & COMPANY</label>
+          <input class="form-input" id="clientName" type="text" placeholder="e.g. Elena Vance / Apex Robotics" required>
+        </div>
+
+        <div class="form-input-group">
+          <label class="form-label" for="clientEmail">WORK EMAIL</label>
+          <input class="form-input" id="clientEmail" type="email" placeholder="elena@apexrobotics.io" required>
+        </div>
+
+        <div class="form-input-group">
+          <label class="form-label" for="projectScope">PRIMARY PROJECT TYPE</label>
+          <input class="form-input" id="projectScope" type="text" placeholder="e.g. Custom 3D Website, iOS/Android App, SaaS" required>
+        </div>
+
+        <div class="form-input-group">
+          <label class="form-label" for="monthlyBudget">ESTIMATED BUDGET / INVESTMENT</label>
+          <input class="form-input" id="monthlyBudget" type="text" placeholder="e.g. $25K - $100K+" required>
+        </div>
+
+        <div class="form-input-group full-width">
+          <label class="form-label" for="projectMessage">PROJECT DETAILS & TECHNICAL REQUIREMENTS</label>
+          <textarea class="form-textarea" id="projectMessage" rows="2" placeholder="Briefly describe your product vision, tech stack preferences, timeline, or marketing goals..." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit-btn">TRANSMIT INQUIRY →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/canvas-fx.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize WebGL Liquid Metaball
+      if (typeof ElvaThreeMetaballsEngine !== 'undefined') {
+        const metaballs = new ElvaThreeMetaballsEngine('threeWebglContainer');
+        metaballs.init();
+      }
+
+      // 2. Load Services Data
+      const services = window.SARVX_DATA ? window.SARVX_DATA.services : [];
+      if (!services.length) return;
+
+      // URL param
+      const urlParams = new URLSearchParams(window.location.search);
+      let currentId = urlParams.get('id') || services[0].id;
+      let currentIndex = services.findIndex(s => s.id === currentId);
+      if (currentIndex === -1) currentIndex = 0;
+
+      const currentService = services[currentIndex];
+
+      // Render Top Nav Tabs
+      const navBar = document.getElementById('serviceNavBar');
+      if (navBar) {
+        navBar.innerHTML = services.map((s, idx) => `
+          <a href="service.html?id=${s.id}" class="service-tab-btn ${idx === currentIndex ? 'active' : ''}">
+            <span>${s.number}</span>
+            <span>${s.title.split('&')[0].trim()}</span>
+          </a>
+        `).join('');
+      }
+
+      // Populate Service Data
+      document.title = `${currentService.title} — Capabilities — SARVX.MEDIA`;
+      document.getElementById('serviceNumPill').textContent = `${currentService.number} // DISCIPLINE`;
+      document.getElementById('serviceTitle').textContent = currentService.title;
+      document.getElementById('serviceHeadline').textContent = currentService.headline;
+      document.getElementById('serviceDesc').textContent = currentService.description;
+
+      // Deliverables
+      const delivContainer = document.getElementById('deliverablesList');
+      if (delivContainer) {
+        delivContainer.innerHTML = currentService.deliverables.map(d => `
+          <div class="deliverable-row">
+            <span class="deliverable-icon">✦</span>
+            <span>${d}</span>
+          </div>
+        `).join('');
+      }
+
+      // Tech Stack
+      const techContainer = document.getElementById('techPillsContainer');
+      if (techContainer) {
+        techContainer.innerHTML = currentService.techStack.map(t => `
+          <span class="tech-pill-large">${t}</span>
+        `).join('');
+      }
+
+      // KPIs
+      const kpiContainer = document.getElementById('kpiGrid');
+      if (kpiContainer) {
+        kpiContainer.innerHTML = currentService.kpis.map(k => {
+          const parts = k.split('(');
+          const name = parts[0].trim();
+          const val = parts[1] ? parts[1].replace(')', '').trim() : 'TARGET';
+          return `
+            <div class="kpi-card">
+              <div class="kpi-card-val">${val}</div>
+              <div class="kpi-card-lbl">${name}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Pre-fill Modal Service input when clicked
+      const scopeInput = document.getElementById('projectScope');
+      if (scopeInput) {
+        scopeInput.value = currentService.title;
+      }
+
+      // Prev & Next Links
+      const prevIdx = (currentIndex - 1 + services.length) % services.length;
+      const nextIdx = (currentIndex + 1) % services.length;
+      const prevService = services[prevIdx];
+      const nextService = services[nextIdx];
+
+      const prevLink = document.getElementById('prevServiceLink');
+      const nextLink = document.getElementById('nextServiceLink');
+      if (prevLink && nextLink) {
+        prevLink.href = `service.html?id=${prevService.id}`;
+        document.getElementById('prevServiceTitle').textContent = prevService.title;
+
+        nextLink.href = `service.html?id=${nextService.id}`;
+        document.getElementById('nextServiceTitle').textContent = nextService.title;
+      }
+
+      // Modal Triggers
+      const modal = document.querySelector('.contact-modal-overlay');
+      const openBtns = document.querySelectorAll('.open-contact-modal');
+      const closeBtn = document.querySelector('.modal-close-btn');
+
+      openBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
