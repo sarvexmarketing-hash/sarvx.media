@@ -35,6 +35,7 @@ function initApp() {
     }
     try { initContactModal(); } catch(e) { console.warn(e); }
     try { initMobileNav(); } catch(e) { console.warn(e); }
+    try { initAnchorSmoothScroll(); } catch(e) { console.warn(e); }
   });
 }
 
@@ -739,6 +740,35 @@ function initMobileNav() {
     l.addEventListener('click', () => {
       overlay.classList.remove('active');
       btn.classList.remove('active');
+    });
+  });
+}
+
+/* --- Universal Smooth Anchor Scrolling for All Buttons & Links --- */
+function initAnchorSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#' || targetId.length <= 1) return;
+
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        
+        // If Lenis is active, use Lenis smooth scroll with header offset
+        if (window.sarvxEngine && window.sarvxEngine.lenis) {
+          window.sarvxEngine.lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
+        } else {
+          const topPos = targetEl.getBoundingClientRect().top + window.pageYOffset - 70;
+          window.scrollTo({ top: topPos, behavior: 'smooth' });
+        }
+
+        // Close mobile overlay if active
+        const overlay = document.querySelector('.mobile-nav-overlay');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        if (overlay) overlay.classList.remove('active');
+        if (menuBtn) menuBtn.classList.remove('active');
+      }
     });
   });
 }
