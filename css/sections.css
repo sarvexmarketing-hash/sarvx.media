@@ -1419,7 +1419,7 @@
   color: var(--text-muted);
 }
 
-.form-input, .form-textarea {
+.form-input, .form-textarea, .form-select {
   width: 100%;
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.03);
@@ -1432,14 +1432,96 @@
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.form-textarea {
-  resize: vertical;
-  min-height: 56px;
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
 }
 
-.form-input:focus, .form-textarea:focus {
+.form-select option {
+  background: #111111;
+  color: #FFFFFF;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 52px;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
   border-color: #FFFFFF;
   background: rgba(255, 255, 255, 0.06);
+}
+
+/* Service Selection Chips */
+.form-services-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-services-group-title {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #3fa1e6;
+  margin-bottom: 0.35rem;
+}
+
+.form-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.service-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  color: var(--text-silver);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.service-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.service-chip.active {
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 700;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+}
+
+.service-chip .chip-check {
+  display: inline-flex;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.service-chip.active .chip-check {
+  opacity: 1;
+  color: #000000;
 }
 
 .form-submit-btn {

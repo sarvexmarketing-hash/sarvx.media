@@ -646,31 +646,53 @@ function initContactModal() {
   const triggers = document.querySelectorAll('.open-contact-modal');
   const closeBtn = document.querySelector('.modal-close-btn');
   const form = document.querySelector('.contact-form');
+  const chips = document.querySelectorAll('.service-chip');
+  const selectedInput = document.getElementById('selectedServicesInput');
 
   if (!overlay) return;
+
+  // Toggle Service Chips & Sync Payload
+  function syncSelectedChips() {
+    if (!selectedInput) return;
+    const activeChips = Array.from(document.querySelectorAll('.service-chip.active'))
+      .map(c => c.getAttribute('data-service') || c.textContent.trim().replace(/^✓\s*/, ''));
+    selectedInput.value = activeChips.join(', ');
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      chip.classList.toggle('active');
+      syncSelectedChips();
+    });
+  });
 
   triggers.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   });
 
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       overlay.classList.remove('active');
+      document.body.style.overflow = '';
     });
   }
 
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
       overlay.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('active')) {
       overlay.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
 
@@ -678,21 +700,22 @@ function initContactModal() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const submitBtn = form.querySelector('.form-submit-btn');
-      submitBtn.textContent = 'TRANSMITTING DIGITAL MARKETING INQUIRY...';
+      syncSelectedChips();
+      submitBtn.textContent = 'TRANSMITTING DIGITAL MARKETING & ENGINEERING BRIEF...';
       submitBtn.disabled = true;
 
       setTimeout(() => {
-        submitBtn.textContent = 'INQUIRY RECEIVED — SENIOR PARTNER WILL TRANSMIT BRIEF';
-        submitBtn.style.backgroundColor = '#10B981';
+        submitBtn.textContent = '✓ INQUIRY RECEIVED — SENIOR PARTNER WILL TRANSMIT PROPOSAL';
+        submitBtn.style.background = '#22C55E';
         submitBtn.style.color = '#FFFFFF';
-
         setTimeout(() => {
           overlay.classList.remove('active');
+          document.body.style.overflow = '';
           form.reset();
           submitBtn.textContent = 'TRANSMIT INQUIRY →';
-          submitBtn.style.backgroundColor = '#FFFFFF';
-          submitBtn.style.color = '#000000';
           submitBtn.disabled = false;
+          submitBtn.style.background = '';
+          submitBtn.style.color = '';
         }, 2200);
       }, 1000);
     });

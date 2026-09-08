@@ -584,9 +584,9 @@
       <button class="modal-close-btn" aria-label="Close modal">✕</button>
       <div class="section-label" style="margin-bottom: 0.25rem;">PROJECT & PRODUCT INQUIRY</div>
       <h2 id="contactTitle" class="display-title-large modal-heading">LET'S BUILD & SCALE SOMETHING EXCEPTIONAL.</h2>
-      <p class="modal-subheading">Tell us about your project, timeline, and vision.</p>
+      <p class="modal-subheading">Select the digital marketing and engineering capabilities your project requires.</p>
 
-      <form class="contact-form">
+      <form class="contact-form" id="contactModalForm">
         <div class="form-input-group">
           <label class="form-label" for="clientName">YOUR NAME & COMPANY</label>
           <input class="form-input" id="clientName" type="text" placeholder="e.g. Elena Vance / Apex Robotics" required>
@@ -597,14 +597,70 @@
           <input class="form-input" id="clientEmail" type="email" placeholder="elena@apexrobotics.io" required>
         </div>
 
-        <div class="form-input-group">
-          <label class="form-label" for="projectScope">PRIMARY PROJECT TYPE</label>
-          <input class="form-input" id="projectScope" type="text" placeholder="e.g. Custom 3D Website, iOS/Android App, SaaS" required>
+        <!-- Digital Marketing & Services Multi-Select Chips -->
+        <div class="form-input-group full-width form-services-section">
+          <label class="form-label">SERVICES REQUIRED (SELECT ALL THAT APPLY)</label>
+          
+          <div class="form-services-group">
+            <div class="form-services-group-title">// DIGITAL MARKETING & PERFORMANCE GROWTH</div>
+            <div class="form-chips-wrap" id="marketingChipsWrap">
+              <button type="button" class="service-chip" data-service="Performance Marketing (Meta/Google/TikTok)">
+                <span class="chip-check">✓</span> Performance Paid Ads
+              </button>
+              <button type="button" class="service-chip" data-service="Search SEO & AI Answer Engine (AEO)">
+                <span class="chip-check">✓</span> Search (SEO) & AEO
+              </button>
+              <button type="button" class="service-chip" data-service="Email & SMS Lifecycle Retention (Klaviyo)">
+                <span class="chip-check">✓</span> Lifecycle Retention
+              </button>
+              <button type="button" class="service-chip" data-service="Conversion Rate Optimization (CRO)">
+                <span class="chip-check">✓</span> Conversion CRO
+              </button>
+              <button type="button" class="service-chip" data-service="Marketing Analytics, CDP & Attribution">
+                <span class="chip-check">✓</span> Marketing Analytics & CDP
+              </button>
+              <button type="button" class="service-chip" data-service="Social Media Domination & Viral Motion">
+                <span class="chip-check">✓</span> Social Media & Viral Video
+              </button>
+            </div>
+          </div>
+
+          <div class="form-services-group">
+            <div class="form-services-group-title">// DIGITAL ENGINEERING & CREATIVE</div>
+            <div class="form-chips-wrap" id="engineeringChipsWrap">
+              <button type="button" class="service-chip active" data-service="Custom 3D WebGL / Next.js Flagship">
+                <span class="chip-check">✓</span> 3D WebGL & Next.js Website
+              </button>
+              <button type="button" class="service-chip" data-service="Native Mobile App (iOS & Android)">
+                <span class="chip-check">✓</span> Mobile App (iOS/Android)
+              </button>
+              <button type="button" class="service-chip" data-service="Cloud SaaS Platform Engineering">
+                <span class="chip-check">✓</span> Cloud SaaS Platform
+              </button>
+              <button type="button" class="service-chip" data-service="Headless Shopify Plus & E-Commerce">
+                <span class="chip-check">✓</span> Headless Shopify E-Comm
+              </button>
+              <button type="button" class="service-chip" data-service="Brand Strategy & Visual Identity">
+                <span class="chip-check">✓</span> Brand Strategy & Identity
+              </button>
+              <button type="button" class="service-chip" data-service="Commercial Film & 3D CGI Production">
+                <span class="chip-check">✓</span> 3D CGI & Commercial Film
+              </button>
+            </div>
+          </div>
+
+          <!-- Hidden input storing comma-separated selected services -->
+          <input type="hidden" id="selectedServicesInput" name="selectedServices" value="Custom 3D WebGL / Next.js Flagship">
         </div>
 
-        <div class="form-input-group">
+        <div class="form-input-group full-width">
           <label class="form-label" for="monthlyBudget">ESTIMATED BUDGET / INVESTMENT</label>
-          <input class="form-input" id="monthlyBudget" type="text" placeholder="e.g. $25K - $100K+" required>
+          <select class="form-select" id="monthlyBudget" required>
+            <option value="$15K - $35K (Growth Sprint / MVP Build)">$15K - $35K (Growth Sprint / MVP Build)</option>
+            <option value="$35K - $75K (Custom Flagship / Multi-Channel Acquisition)" selected>$35K - $75K (Custom Flagship / Multi-Channel Acquisition)</option>
+            <option value="$75K - $150K+ (Full-Stack Engineering & Growth Engine)">$75K - $150K+ (Full-Stack Engineering & Growth Engine)</option>
+            <option value="Enterprise Monthly Retainer ($15K - $50K+/mo)">Enterprise Monthly Retainer ($15K - $50K+/mo)</option>
+          </select>
         </div>
 
         <div class="form-input-group full-width">
@@ -718,10 +774,28 @@
         document.getElementById('nextServiceTitle').textContent = nextService.title;
       }
 
-      // Modal Triggers
+      // Modal Triggers & Chips Handling
       const modal = document.querySelector('.contact-modal-overlay');
       const openBtns = document.querySelectorAll('.open-contact-modal');
       const closeBtn = document.querySelector('.modal-close-btn');
+      const form = document.getElementById('contactModalForm');
+      const chips = document.querySelectorAll('.service-chip');
+      const selectedInput = document.getElementById('selectedServicesInput');
+
+      function syncSelectedChips() {
+        if (!selectedInput) return;
+        const activeChips = Array.from(document.querySelectorAll('.service-chip.active'))
+          .map(c => c.getAttribute('data-service') || c.textContent.trim().replace(/^✓\s*/, ''));
+        selectedInput.value = activeChips.join(', ');
+      }
+
+      chips.forEach((chip) => {
+        chip.addEventListener('click', (e) => {
+          e.preventDefault();
+          chip.classList.toggle('active');
+          syncSelectedChips();
+        });
+      });
 
       openBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -744,6 +818,38 @@
           document.body.style.overflow = '';
         }
       });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const submitBtn = form.querySelector('.form-submit-btn');
+          syncSelectedChips();
+          submitBtn.textContent = 'TRANSMITTING DIGITAL MARKETING & ENGINEERING BRIEF...';
+          submitBtn.disabled = true;
+
+          setTimeout(() => {
+            submitBtn.textContent = '✓ INQUIRY RECEIVED — SENIOR PARTNER WILL TRANSMIT PROPOSAL';
+            submitBtn.style.background = '#22C55E';
+            submitBtn.style.color = '#FFFFFF';
+            setTimeout(() => {
+              modal.classList.remove('active');
+              document.body.style.overflow = '';
+              form.reset();
+              submitBtn.textContent = 'TRANSMIT INQUIRY →';
+              submitBtn.disabled = false;
+              submitBtn.style.background = '';
+              submitBtn.style.color = '';
+            }, 2200);
+          }, 1000);
+        });
+      }
     });
   </script>
 </body>
