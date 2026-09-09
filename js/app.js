@@ -730,6 +730,7 @@ function initContactModal() {
       // Collect form fields
       const name = form.querySelector('#clientName')?.value || 'Not specified';
       const email = form.querySelector('#clientEmail')?.value || 'Not specified';
+      const phone = form.querySelector('#clientPhone')?.value || 'Not specified';
       const services = selectedInput?.value || form.querySelector('#projectType')?.value || 'General Inquiry';
       const budget = form.querySelector('#monthlyBudget')?.value || form.querySelector('#projectBudget')?.value || 'Not specified';
       const message = form.querySelector('#projectMessage')?.value || form.querySelector('textarea')?.value || 'New project inquiry from SARVX TECH portal.';
@@ -741,6 +742,7 @@ function initContactModal() {
         _captcha: "false",
         "Client Name": name,
         "Work Email": email,
+        "Phone Number": phone,
         "Services Required": services,
         "Estimated Budget": budget,
         "Project Message": message,
@@ -783,7 +785,7 @@ function initContactModal() {
         console.warn('FormSubmit AJAX fallback:', err);
         // Fallback: Mailto link directly addressing both emails
         const mailtoLink = `mailto:javedsayed133@gmail.com?cc=sarvexmarketing@gmail.com&subject=${encodeURIComponent("New Project Inquiry — SARVX TECH (" + name + ")")}&body=${encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\nServices: ${services}\nBudget: ${budget}\nMessage: ${message}`
+          `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nServices: ${services}\nBudget: ${budget}\nMessage: ${message}`
         )}`;
 
         if (submitBtn) {
