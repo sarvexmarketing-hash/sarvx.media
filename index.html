@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SARVX.MEDIA — Websites, Mobile Applications, Digital Marketing & Growth</title>
+  <title>SARVX TECH — Websites, Mobile Applications, Digital Marketing & Growth</title>
   
   <!-- SEO & Social Metadata -->
-  <meta name="description" content="SARVX.MEDIA is a premier digital engineering and marketing agency. We design and build 3D WebGL Flagships, Native Mobile Apps (iOS & Android), SaaS Platforms, and scale brands through Performance Marketing, Technical SEO/AEO, and Compounding Lifecycle Retention.">
+  <meta name="description" content="SARVX TECH is a premier digital engineering and marketing agency. We design and build 3D WebGL Flagships, Native Mobile Apps (iOS & Android), SaaS Platforms, and scale brands through Performance Marketing, Technical SEO/AEO, and Compounding Lifecycle Retention.">
   <meta name="keywords" content="web development agency, mobile app development, iOS apps, Android apps, SaaS platform development, Next.js, Three.js 3D web, React Native, digital marketing agency, performance marketing, paid media, SEO, AEO, CRO, Klaviyo retention">
   <meta name="theme-color" content="#000000">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sarvx.media/">
-  <meta property="og:title" content="SARVX.MEDIA — Websites, Applications & Digital Marketing">
+  <meta property="og:url" content="https://sarvx.tech/">
+  <meta property="og:title" content="SARVX TECH — Websites, Applications & Digital Marketing">
   <meta property="og:description" content="Award-caliber 3D websites, iOS/Android mobile apps, SaaS platforms, and mathematical performance marketing engines.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image" content="assets/sarvx_tech_logo.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SARVX.MEDIA — Websites, Applications & Digital Marketing">
+  <meta name="twitter:title" content="SARVX TECH — Websites, Applications & Digital Marketing">
   <meta name="twitter:description" content="Custom Websites, Native Mobile Apps, SaaS Platforms & Full-Stack Digital Marketing.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:image" content="assets/sarvx_tech_logo.png">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sections.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23FFFFFF'/></svg>">
+  <link rel="icon" type="image/png" href="assets/sarvx_tech_logo.png">
 </head>
 <body>
 
@@ -42,57 +42,13 @@
   </div>
   <div class="custom-cursor-follower"></div>
 
-  <!-- Cinematic Preloader with Elva Glowing Shadow Numerals -->
-  <div class="preloader" id="globalPreloader" aria-hidden="true" onclick="this.classList.add('completed')">
-    <div class="preloader-brand">
-      <div class="preloader-logo">SARVX.MEDIA</div>
-      <div class="preloader-tagline">WEBSITES × MOBILE APPS × DIGITAL MARKETING</div>
-    </div>
-    <div class="preloader-progress-wrap" style="position: relative; display: flex; align-items: center; justify-content: center;">
-      <div class="preloader-shadow-number" id="preloaderShadowNum">0%</div>
-      <div class="preloader-number" id="preloaderNum">0%</div>
-      <div class="preloader-bar-track">
-        <div class="preloader-bar-fill" id="preloaderFill"></div>
-      </div>
-    </div>
-  </div>
 
-  <script>
-    (function() {
-      var p = document.getElementById('globalPreloader');
-      var num = document.getElementById('preloaderNum');
-      var shadowNum = document.getElementById('preloaderShadowNum');
-      var fill = document.getElementById('preloaderFill');
-      var start = performance.now();
-      var dur = 750;
-      function tick(now) {
-        var progress = Math.min(1, (now - start) / dur);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var val = Math.round(eased * 100);
-        if (num) num.textContent = val + '%';
-        if (shadowNum) shadowNum.textContent = val + '%';
-        if (fill) fill.style.width = val + '%';
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          setTimeout(function() {
-            if (p) p.classList.add('completed');
-          }, 150);
-        }
-      }
-      requestAnimationFrame(tick);
-      // Failsafe auto-dismiss in 1.5s
-      setTimeout(function() {
-        if (p) p.classList.add('completed');
-      }, 1500);
-    })();
-  </script>
 
   <!-- Global Header & Minimal Navigation -->
   <header class="site-header" role="banner">
     <a href="#hero" class="brand-logo-link">
       <span class="brand-dot"></span>
-      <span>SARVX.MEDIA</span>
+      <span>SARVX TECH</span>
     </a>
 
     <nav class="nav-desktop" aria-label="Main Navigation">
@@ -101,6 +57,7 @@
       <a href="#clients" class="nav-link">CLIENTS</a>
       <a href="#work" class="nav-link">CASE STUDIES</a>
       <a href="#tech-stack" class="nav-link">TECH STACK</a>
+      <a href="#founder" class="nav-link">LEADERSHIP</a>
     </nav>
 
     <div class="header-actions">
@@ -149,10 +106,11 @@
       <a href="#clients" class="mobile-nav-link">CLIENTS</a>
       <a href="#work" class="mobile-nav-link">CASE STUDIES</a>
       <a href="#tech-stack" class="mobile-nav-link">TECH STACK</a>
+      <a href="#founder" class="mobile-nav-link">LEADERSHIP</a>
     </div>
     <div>
       <button class="magnetic-btn-huge open-contact-modal" style="width: 100%; justify-content: center;">START A PROJECT →</button>
-      <p style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 1.5rem; text-align: center;">© 2026 SARVX.MEDIA</p>
+      <p style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 1.5rem; text-align: center;">© 2026 SARVX TECH</p>
     </div>
   </div>
 
@@ -167,7 +125,7 @@
       </div>
 
       <div class="hero-content-wrapper">
-        <div class="hero-badge">SARVX.MEDIA // WEBSITES × MOBILE APPLICATIONS × DIGITAL MARKETING</div>
+        <div class="hero-badge">SARVX TECH // WEBSITES × MOBILE APPLICATIONS × DIGITAL MARKETING</div>
         
         <div class="hero-phrase-container">
           <!-- Phrase 0 -->
@@ -184,7 +142,7 @@
           </div>
           <!-- Phrase 3 -->
           <div class="hero-phrase">
-            <h2 class="display-title-huge hero-logo-phrase" style="letter-spacing: -0.04em; font-size: clamp(3.5rem, 13vw, 14.5rem);">SARVX.MEDIA</h2>
+            <h2 class="display-title-huge hero-logo-phrase" style="letter-spacing: -0.04em; font-size: clamp(3.5rem, 13vw, 14.5rem);">SARVX TECH</h2>
           </div>
         </div>
       </div>
@@ -227,14 +185,14 @@
           </div>
           <!-- Step 5 -->
           <div class="intro-statement" data-step="5">
-            <h2 class="display-title-huge hero-logo-phrase" style="letter-spacing: -0.04em;">SARVX.</h2>
+            <h2 class="display-title-huge hero-logo-phrase" style="letter-spacing: -0.04em;">SARVX TECH</h2>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 3. EDITORIAL ABOUT SECTION (MULTI-SPEED PARALLAX) -->
-    <section id="about" class="section about-section" aria-label="About SARVX">
+    <section id="about" class="section about-section" aria-label="About SARVX TECH">
       <div class="about-grid">
         <div class="about-parallax-words">
           <div class="parallax-token">BUILD</div>
@@ -243,7 +201,7 @@
         </div>
         <div class="about-text-content">
           <div class="section-label">THE MANIFESTO</div>
-          <h2 class="about-lead">SARVX.MEDIA is a premier digital engineering and growth agency building custom 3D websites, native mobile applications, scalable SaaS platforms, and full-funnel digital marketing ecosystems.</h2>
+          <h2 class="about-lead">SARVX TECH is a premier digital engineering and growth agency building custom 3D websites, native mobile applications, scalable SaaS platforms, and full-funnel digital marketing ecosystems.</h2>
           <p class="about-subtext">We eliminate the boundary between bleeding-edge software engineering and mathematical marketing. Whether crafting an award-winning Next.js WebGL flagship, architecting a high-concurrency React Native mobile app, or deploying high-volume multi-channel paid media campaigns, we engineer digital products that capture attention and compound enterprise value.</p>
         </div>
       </div>
@@ -442,10 +400,10 @@
     </section>
 
     <!-- 13. WHY SARVX SECTION -->
-    <section class="why-sarvx-section" aria-label="Why SARVX">
+    <section class="why-sarvx-section" aria-label="Why SARVX TECH">
       <div style="max-width: var(--container-max); margin: 0 auto; width: 100%;">
         <div class="section-label">THE FOUNDATION</div>
-        <h2 class="display-title-large">WHY SARVX</h2>
+        <h2 class="display-title-large">WHY SARVX TECH</h2>
 
         <div class="pillars-grid">
           <!-- Dynamically populated from SARVX_DATA -->
@@ -453,7 +411,102 @@
       </div>
     </section>
 
-    <!-- 14. FINAL OUTRO SECTION (PINNED EMOTIONAL NARRATIVE — §25) -->
+    <!-- 14. FOUNDER & LEADERSHIP SECTION -->
+    <section id="founder" class="section founder-section" aria-label="Founder and Leadership" style="position: relative; background-color: #030303; padding: 7rem var(--container-padding);">
+      <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+        
+        <div style="margin-bottom: 4rem; text-align: left;">
+          <div class="section-label" style="letter-spacing: 0.2em; color: #FFC700;">// EXECUTIVE LEADERSHIP</div>
+          <h2 class="display-title-large" style="margin-top: 0.4rem; margin-bottom: 0.5rem; font-size: clamp(2rem, 4vw, 3.2rem);">THE MINDS BEHIND SARVX TECH</h2>
+        </div>
+
+        <!-- Leader 1: Bali Ratna Sekhar (Founder & CEO) -->
+        <div class="leadership-story-block" style="display: grid; grid-template-columns: 380px 1fr; gap: 4.5rem; align-items: center; margin-bottom: 5.5rem; padding-bottom: 5.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+          <!-- Left Column: Large Portrait Photo -->
+          <div class="leadership-photo-wrap" style="width: 100%; max-width: 380px;">
+            <div class="leadership-photo-frame" style="width: 100%; height: 480px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); background: #0D0D0D; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 199, 0, 0.08);">
+              <img src="assets/founder.png" alt="Bali Ratna Sekhar — Founder & CEO" class="leadership-photo-img" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;">
+            </div>
+          </div>
+
+          <!-- Right Column: Editorial Title, Name, Role & Story -->
+          <div class="leadership-content-wrap" style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 1.25rem;">
+            <div class="leadership-index-num" style="font-family: var(--font-display); font-size: 1.6rem; font-style: italic; color: #FFC700;">01</div>
+            
+            <h2 class="leadership-story-title" style="font-family: var(--font-display); font-size: clamp(2.2rem, 3.6vw, 3.4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; color: #FFFFFF; margin: 0;">
+              THE VISION BEHIND SARVX TECH
+            </h2>
+
+            <div class="leadership-meta-bar" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC700;">
+              <span>BALI RATNA SEKHAR</span>
+              <span class="dot-sep" style="color: rgba(255, 255, 255, 0.3);">·</span>
+              <span class="role-title" style="color: var(--text-silver); font-weight: 500;">FOUNDER & CHIEF EXECUTIVE OFFICER</span>
+            </div>
+
+            <blockquote class="leadership-lead-quote" style="font-family: var(--font-display); font-size: clamp(15px, 1.2vw, 17px); font-weight: 600; line-height: 1.55; color: #FFFFFF; margin: 0.25rem 0 0; padding-left: 1.25rem; border-left: 3px solid #FFC700; font-style: italic;">
+              "We don't just build websites or run ads. We engineer full-stack digital engines that command market attention and compound enterprise revenue."
+            </blockquote>
+
+            <p class="leadership-story-body" style="font-family: var(--font-body); font-size: 15px; line-height: 1.75; color: var(--text-silver); margin: 0; max-width: 65ch;">
+              What began with a passion for world-class digital craftsmanship has evolved under Bali Ratna Sekhar's leadership into SARVX TECH—an elite engineering and growth ecosystem. By converging cinematic 3D WebGL interfaces, native mobile applications, and algorithmic performance marketing, SARVX accelerates category leaders across luxury, technology, and healthcare.
+            </p>
+
+            <div class="leadership-tags-row" style="display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 0.5rem;">
+              <span class="leadership-tag-item">✦ Executive Strategy</span>
+              <span class="leadership-tag-item">✦ 68+ Brands Scaled</span>
+              <span class="leadership-tag-item">✦ Enterprise Growth</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leader 2: Sayed Javed Ahmed (Co-Founder & CTO) -->
+        <div class="leadership-story-block" style="display: grid; grid-template-columns: 380px 1fr; gap: 4.5rem; align-items: center;">
+          <!-- Left Column: Large Portrait Photo -->
+          <div class="leadership-photo-wrap" style="width: 100%; max-width: 380px;">
+            <div class="leadership-photo-frame" style="width: 100%; height: 480px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); background: #0D0D0D; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 240, 255, 0.08);">
+              <img src="assets/co_founder.jpg" alt="Sayed Javed Ahmed — Co-Founder & CTO (Senior Developer)" class="leadership-photo-img" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;">
+            </div>
+          </div>
+
+          <!-- Right Column: Editorial Title, Name, Role & Story -->
+          <div class="leadership-content-wrap" style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 1.25rem;">
+            <div class="leadership-index-num" style="font-family: var(--font-display); font-size: 1.6rem; font-style: italic; color: #00F0FF;">02</div>
+            
+            <h2 class="leadership-story-title" style="font-family: var(--font-display); font-size: clamp(2.2rem, 3.6vw, 3.4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; color: #FFFFFF; margin: 0;">
+              ENGINEERING & TECHNICAL ARCHITECTURE
+            </h2>
+
+            <div class="leadership-meta-bar" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #00F0FF;">
+              <span>SAYED JAVED AHMED</span>
+              <span class="dot-sep" style="color: rgba(255, 255, 255, 0.3);">·</span>
+              <span class="role-title" style="color: var(--text-silver); font-weight: 500;">CO-FOUNDER & CTO (SENIOR DEVELOPER)</span>
+            </div>
+
+            <blockquote class="leadership-lead-quote" style="font-family: var(--font-display); font-size: clamp(15px, 1.2vw, 17px); font-weight: 600; line-height: 1.55; color: #FFFFFF; margin: 0.25rem 0 0; padding-left: 1.25rem; border-left: 3px solid #00F0FF; font-style: italic;">
+              "Architecting high-performance digital systems with precision engineering, modern 3D WebGL interfaces, and scalable infrastructure built for speed."
+            </blockquote>
+
+            <p class="leadership-story-body" style="font-family: var(--font-body); font-size: 15px; line-height: 1.75; color: var(--text-silver); margin: 0; max-width: 65ch;">
+              Steering the technology stack, software architecture, and engineering infrastructure at SARVX TECH. Sayed Javed Ahmed brings senior full-stack mastery to translate complex mathematical logic, high-concurrency systems, and real-time GPU shaders into flawless, production-grade applications that withstand enterprise scale.
+            </p>
+
+            <div class="leadership-tags-row" style="display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 0.5rem;">
+              <span class="leadership-tag-item">✦ Full-Stack Architecture</span>
+              <span class="leadership-tag-item">✦ Senior Software Development</span>
+              <span class="leadership-tag-item">✦ WebGL & Cloud Systems</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 4rem; text-align: center;">
+          <button class="nav-cta-btn open-contact-modal" style="padding: 16px 36px; font-size: 13px; display: inline-flex;">
+            <span>START A PROJECT WITH OUR LEADERSHIP →</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. FINAL OUTRO SECTION (PINNED EMOTIONAL NARRATIVE — §25) -->
     <section class="section emotional-section pinned-outro-section" aria-label="Cinematic Outro">
       <div class="outro-content-wrapper" style="max-width: 1200px; margin: 0 auto; width: 100%; text-align: center;">
         <div class="section-label">THE CONCLUSION</div>
@@ -497,7 +550,7 @@
     <div style="max-width: var(--container-max); margin: 0 auto; width: 100%;">
       <div class="footer-top-grid">
         <div class="footer-brand-col">
-          <div class="footer-logo">SARVX.MEDIA</div>
+          <div class="footer-logo">SARVX TECH</div>
           <p class="footer-tagline">A premier full-stack digital engineering and growth agency crafting 3D websites, native mobile applications, scalable SaaS platforms, and mathematical performance marketing engines that move culture and compound revenue.</p>
         </div>
 
@@ -511,6 +564,7 @@
             <a href="clients.html" class="footer-link">Client Directory (68+)</a>
             <a href="#work" class="footer-link">Case Studies</a>
             <a href="#tech-stack" class="footer-link">Tech Stack</a>
+            <a href="#founder" class="footer-link">Leadership</a>
           </div>
         </div>
 
@@ -534,13 +588,13 @@
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram ↗</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn ↗</a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">X / Twitter ↗</a>
-            <a href="mailto:build@sarvx.media" class="footer-link open-contact-modal">build@sarvx.media ↗</a>
+            <a href="mailto:build@sarvx.tech" class="footer-link open-contact-modal">build@sarvx.tech ↗</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom-row">
-        <div>© 2026 SARVX.MEDIA — ALL RIGHTS RESERVED</div>
+        <div>© 2026 SARVX TECH — ALL RIGHTS RESERVED</div>
         <div id="footerUtcTime">00:00:00 UTC · NY · LDN · TYO · SGP</div>
       </div>
     </div>

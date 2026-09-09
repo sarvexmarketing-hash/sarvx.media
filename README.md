@@ -1,6 +1,6 @@
-# SARVX.MEDIA — Cinematic Creative Technology & Growth Agency Platform
+# SARVX TECH — Cinematic Creative Technology & Growth Agency Platform
 
-An award-winning, cinematic digital marketing agency web experience built for **SARVX.MEDIA**, inspired by the visual rhythm, scroll choreography, and editorial aesthetics of Elva Labs.
+An award-winning, cinematic digital marketing agency web experience built for **SARVX TECH**, inspired by the visual rhythm, scroll choreography, and editorial aesthetics of Elva Labs.
 
 ---
 

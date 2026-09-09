@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SARVX.MEDIA — GSAP SCROLLTRIGGER & LENIS CHOREOGRAPHY ENGINE
+   SARVX TECH — GSAP SCROLLTRIGGER & LENIS CHOREOGRAPHY ENGINE
    ========================================================================== */
 
 class SarvxAnimationEngine {
@@ -208,7 +208,7 @@ class SarvxAnimationEngine {
       .fromTo(phrases[2], { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 1 }, 2.6)
       .to(phrases[2], { opacity: 0, y: -40, scale: 0.95, duration: 1 }, 3.8)
 
-      // Step 3: "SARVX.MEDIA"
+      // Step 3: "SARVX TECH"
       .fromTo(phrases[3], { opacity: 0, y: 60, scale: 0.88, letterSpacing: '0.1em' }, { opacity: 1, y: 0, scale: 1, letterSpacing: '-0.04em', duration: 1.2 }, 4.0);
   }
 

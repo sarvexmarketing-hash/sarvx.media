@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SARVX.MEDIA — COMPREHENSIVE DIGITAL MARKETING APPLICATION CONTROLLER
+   SARVX TECH — COMPREHENSIVE DIGITAL MARKETING APPLICATION CONTROLLER
    ========================================================================== */
 
 function initApp() {

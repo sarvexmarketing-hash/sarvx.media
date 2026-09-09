@@ -1,6 +1,5 @@
 /* ==========================================================================
-   SARVX.MEDIA — PROCEDURAL CANVAS VISUALS, SHADERS & SOUND SYNTHESIZER
-   60FPS GPU-accelerated interactive background and visual choreography
+   SARVX TECH — PROCEDURAL CANVAS VISUALS, SHADERS & SOUND SYNTHESIZER
    ========================================================================== */
 
 class AmbientCanvasEngine {

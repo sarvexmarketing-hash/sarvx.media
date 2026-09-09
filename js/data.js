@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SARVX.MEDIA — COMPREHENSIVE DIGITAL MARKETING, WEBSITES & APPS ARCHITECTURE
+   SARVX TECH — COMPREHENSIVE DIGITAL MARKETING, WEBSITES & APPS ARCHITECTURE
    ========================================================================== */
 
 const SARVX_DATA = {
