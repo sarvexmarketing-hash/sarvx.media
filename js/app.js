@@ -642,15 +642,14 @@ function initFooterTime() {
 }
 
 /* --- Contact Modal & Drawer Controller --- */
+/* --- Contact Modal & Drawer Controller --- */
 function initContactModal() {
-  const overlay = document.querySelector('.contact-modal-overlay');
-  const triggers = document.querySelectorAll('.open-contact-modal');
-  const closeBtn = document.querySelector('.modal-close-btn');
-  const form = document.querySelector('.contact-form');
+  const overlays = document.querySelectorAll('.contact-modal-overlay, .contact-modal-backdrop, #contactModal');
+  const triggers = document.querySelectorAll('.open-contact-modal, [href="#contact"]');
+  const closeBtns = document.querySelectorAll('.modal-close-btn');
+  const forms = document.querySelectorAll('.contact-form, #projectForm, #contactModalForm');
   const chips = document.querySelectorAll('.service-chip');
   const selectedInput = document.getElementById('selectedServicesInput');
-
-  if (!overlay) return;
 
   // Toggle Service Chips & Sync Payload
   function syncSelectedChips() {
@@ -668,59 +667,146 @@ function initContactModal() {
     });
   });
 
+  function openModal() {
+    overlays.forEach(overlay => {
+      overlay.classList.add('active');
+      overlay.style.display = 'flex';
+      overlay.setAttribute('aria-hidden', 'false');
+    });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlays.forEach(overlay => {
+      overlay.classList.remove('active');
+      if (overlay.classList.contains('contact-modal-backdrop')) {
+        overlay.style.display = 'none';
+      }
+      overlay.setAttribute('aria-hidden', 'true');
+    });
+    document.body.style.overflow = '';
+  }
+
   triggers.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      openModal();
     });
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
+  closeBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal();
     });
-  }
+  });
 
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  overlays.forEach((overlay) => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeModal();
+      }
+    });
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
+    if (e.key === 'Escape') {
+      closeModal();
     }
   });
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
+  forms.forEach((form) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('.form-submit-btn');
       syncSelectedChips();
-      submitBtn.textContent = 'TRANSMITTING DIGITAL MARKETING & ENGINEERING BRIEF...';
-      submitBtn.disabled = true;
+      
+      const submitBtn = form.querySelector('.form-submit-btn, button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.textContent : 'SUBMIT';
+      if (submitBtn) {
+        submitBtn.textContent = 'TRANSMITTING PROJECT BRIEF TO PARTNERS...';
+        submitBtn.disabled = true;
+      }
 
-      setTimeout(() => {
-        submitBtn.textContent = '✓ INQUIRY RECEIVED — SENIOR PARTNER WILL TRANSMIT PROPOSAL';
-        submitBtn.style.background = '#22C55E';
-        submitBtn.style.color = '#FFFFFF';
+      // Collect form fields
+      const name = form.querySelector('#clientName')?.value || 'Not specified';
+      const email = form.querySelector('#clientEmail')?.value || 'Not specified';
+      const services = selectedInput?.value || form.querySelector('#projectType')?.value || 'General Inquiry';
+      const budget = form.querySelector('#monthlyBudget')?.value || form.querySelector('#projectBudget')?.value || 'Not specified';
+      const message = form.querySelector('#projectMessage')?.value || form.querySelector('textarea')?.value || 'New project inquiry from SARVX TECH portal.';
+
+      const payload = {
+        _cc: "sarvexmarketing@gmail.com",
+        _subject: `🚀 New Project Inquiry — SARVX TECH (${name})`,
+        _template: "table",
+        _captcha: "false",
+        "Client Name": name,
+        "Work Email": email,
+        "Services Required": services,
+        "Estimated Budget": budget,
+        "Project Message": message,
+        "Submitted At": new Date().toLocaleString()
+      };
+
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/javedsayed133@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok || data.success === "true" || data.success === true) {
+          if (submitBtn) {
+            submitBtn.textContent = '✓ BRIEF TRANSMITTED TO JAVED & SARVEX TEAM!';
+            submitBtn.style.background = '#22C55E';
+            submitBtn.style.color = '#FFFFFF';
+          }
+
+          setTimeout(() => {
+            closeModal();
+            form.reset();
+            if (submitBtn) {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+              submitBtn.style.background = '';
+              submitBtn.style.color = '';
+            }
+          }, 2400);
+        } else {
+          throw new Error('Transmission endpoint returned unsuccessful response');
+        }
+      } catch (err) {
+        console.warn('FormSubmit AJAX fallback:', err);
+        // Fallback: Mailto link directly addressing both emails
+        const mailtoLink = `mailto:javedsayed133@gmail.com?cc=sarvexmarketing@gmail.com&subject=${encodeURIComponent("New Project Inquiry — SARVX TECH (" + name + ")")}&body=${encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nServices: ${services}\nBudget: ${budget}\nMessage: ${message}`
+        )}`;
+
+        if (submitBtn) {
+          submitBtn.textContent = '✓ TRANSMITTING VIA SECURE MAIL...';
+          submitBtn.style.background = '#22C55E';
+          submitBtn.style.color = '#FFFFFF';
+        }
+
+        window.open(mailtoLink, '_blank');
+
         setTimeout(() => {
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
+          closeModal();
           form.reset();
-          submitBtn.textContent = 'TRANSMIT INQUIRY →';
-          submitBtn.disabled = false;
-          submitBtn.style.background = '';
-          submitBtn.style.color = '';
-        }, 2200);
-      }, 1000);
+          if (submitBtn) {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+          }
+        }, 2000);
+      }
     });
-  }
+  });
 }
 
 /* --- Mobile Navigation Overlay --- */

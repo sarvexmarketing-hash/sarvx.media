@@ -348,18 +348,24 @@
         <h3 id="modalTitle" class="modal-title">START A PROJECT</h3>
         <button class="modal-close-btn" aria-label="Close modal">✕</button>
       </div>
-      <form class="contact-form" id="projectForm">
+      <form class="contact-form" id="projectForm" action="https://formsubmit.co/javedsayed133@gmail.com" method="POST">
+        <!-- FormSubmit Configuration for Direct Email Delivery -->
+        <input type="hidden" name="_cc" value="sarvexmarketing@gmail.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="🚀 New Project Inquiry — SARVX TECH (Client Portal)">
+
         <div class="form-group">
           <label class="form-label" for="clientName">YOUR NAME / COMPANY</label>
-          <input class="form-input" type="text" id="clientName" required placeholder="e.g. Elena Rostova / Apex Luxury" />
+          <input class="form-input" type="text" id="clientName" name="Client Name" required placeholder="e.g. Elena Rostova / Apex Luxury" />
         </div>
         <div class="form-group">
           <label class="form-label" for="clientEmail">CORPORATE EMAIL</label>
-          <input class="form-input" type="email" id="clientEmail" required placeholder="elena@company.com" />
+          <input class="form-input" type="email" id="clientEmail" name="Work Email" required placeholder="elena@company.com" />
         </div>
         <div class="form-group">
           <label class="form-label" for="projectType">PRIMARY OBJECTIVE</label>
-          <select class="form-input" id="projectType">
+          <select class="form-input" id="projectType" name="Primary Objective">
             <option value="Full-Stack Digital Marketing & Growth">Full-Stack Digital Marketing & Growth</option>
             <option value="Custom 3D Website / Web Flagship">Custom 3D Website / Web Flagship</option>
             <option value="Native Mobile App (iOS / Android)">Native Mobile App (iOS / Android)</option>
@@ -369,13 +375,13 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="projectBudget">TARGET MONTHLY / PROJECT BUDGET</label>
-          <select class="form-input" id="projectBudget">
+          <select class="form-input" id="projectBudget" name="Estimated Budget">
             <option value="₹2,00,000 - ₹5,00,000 / Month">₹2,00,000 - ₹5,00,000 / Month</option>
             <option value="₹5,00,000 - ₹15,00,000 / Month">₹5,00,000 - ₹15,00,000 / Month</option>
             <option value="₹15,00,000+ / Enterprise Tier">₹15,00,000+ / Enterprise Tier</option>
           </select>
         </div>
-        <button type="submit" class="nav-cta-btn" style="width: 100%; justify-content: center; padding: 14px; margin-top: 1rem;">
+        <button type="submit" class="nav-cta-btn form-submit-btn" style="width: 100%; justify-content: center; padding: 14px; margin-top: 1rem;">
           SUBMIT PROPOSAL REQUEST →
         </button>
       </form>

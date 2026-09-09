@@ -562,12 +562,12 @@
         </div>
 
         <div>
-          <div class="footer-col-title">NETWORK</div>
+          <div class="footer-col-title">NETWORK & CONTACT</div>
           <div class="footer-links-list">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram ↗</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn ↗</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">X / Twitter ↗</a>
-            <a href="mailto:build@sarvx.tech" class="footer-link">build@sarvx.tech</a>
+            <a href="mailto:sarvexmarketing@gmail.com?cc=javedsayed133@gmail.com" class="footer-link">sarvexmarketing@gmail.com ↗</a>
+            <a href="mailto:javedsayed133@gmail.com?cc=sarvexmarketing@gmail.com" class="footer-link">javedsayed133@gmail.com ↗</a>
           </div>
         </div>
       </div>
@@ -587,15 +587,21 @@
       <h2 id="contactTitle" class="display-title-large modal-heading">LET'S BUILD & SCALE SOMETHING EXCEPTIONAL.</h2>
       <p class="modal-subheading">Select the digital marketing and engineering capabilities your project requires.</p>
 
-      <form class="contact-form" id="contactModalForm">
+      <form class="contact-form" id="contactModalForm" action="https://formsubmit.co/javedsayed133@gmail.com" method="POST">
+        <!-- FormSubmit Configuration for Direct Email Delivery -->
+        <input type="hidden" name="_cc" value="sarvexmarketing@gmail.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="🚀 New Project Inquiry — SARVX TECH">
+
         <div class="form-input-group">
           <label class="form-label" for="clientName">YOUR NAME & COMPANY</label>
-          <input class="form-input" id="clientName" type="text" placeholder="e.g. Elena Vance / Apex Robotics" required>
+          <input class="form-input" id="clientName" name="Client Name" type="text" placeholder="e.g. Elena Vance / Apex Robotics" required>
         </div>
 
         <div class="form-input-group">
           <label class="form-label" for="clientEmail">WORK EMAIL</label>
-          <input class="form-input" id="clientEmail" type="email" placeholder="elena@apexrobotics.io" required>
+          <input class="form-input" id="clientEmail" name="Work Email" type="email" placeholder="elena@apexrobotics.io" required>
         </div>
 
         <!-- Digital Marketing & Services Multi-Select Chips -->
@@ -651,12 +657,12 @@
           </div>
 
           <!-- Hidden input storing comma-separated selected services -->
-          <input type="hidden" id="selectedServicesInput" name="selectedServices" value="Custom 3D WebGL / Next.js Flagship">
+          <input type="hidden" id="selectedServicesInput" name="Selected Services" value="Custom 3D WebGL / Next.js Flagship">
         </div>
 
         <div class="form-input-group full-width">
           <label class="form-label" for="monthlyBudget">ESTIMATED BUDGET / INVESTMENT TIER</label>
-          <select class="form-select" id="monthlyBudget" required>
+          <select class="form-select" id="monthlyBudget" name="Estimated Budget" required>
             <option value="Growth Sprint / MVP Build">Growth Sprint / MVP Build</option>
             <option value="Custom Flagship / Multi-Channel Acquisition" selected>Custom Flagship / Multi-Channel Acquisition</option>
             <option value="Full-Stack Engineering & Growth Engine">Full-Stack Engineering & Growth Engine</option>
@@ -666,7 +672,7 @@
 
         <div class="form-input-group full-width">
           <label class="form-label" for="projectMessage">PROJECT DETAILS & TECHNICAL REQUIREMENTS</label>
-          <textarea class="form-textarea" id="projectMessage" rows="2" placeholder="Briefly describe your product vision, tech stack preferences, timeline, or marketing goals..." required></textarea>
+          <textarea class="form-textarea" id="projectMessage" name="Project Message" rows="2" placeholder="Briefly describe your product vision, tech stack preferences, timeline, or marketing goals..." required></textarea>
         </div>
 
         <button type="submit" class="form-submit-btn">TRANSMIT INQUIRY →</button>
