@@ -759,9 +759,9 @@ function initContactModal() {
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
 
-        if (response.ok || data.success === "true" || data.success === true) {
+        if (response.ok && (data.success === "true" || data.success === true)) {
           if (submitBtn) {
             submitBtn.textContent = '✓ BRIEF TRANSMITTED TO JAVED & SARVEX TEAM!';
             submitBtn.style.background = '#22C55E';
@@ -777,9 +777,26 @@ function initContactModal() {
               submitBtn.style.background = '';
               submitBtn.style.color = '';
             }
-          }, 2400);
+          }, 2500);
+        } else if (data.message && data.message.toLowerCase().includes('activation')) {
+          // One-time activation required by FormSubmit
+          if (submitBtn) {
+            submitBtn.textContent = '⚠️ PLEASE CLICK "ACTIVATE FORM" SENT TO JAVED EMAIL';
+            submitBtn.style.background = '#F59E0B';
+            submitBtn.style.color = '#000000';
+          }
+
+          setTimeout(() => {
+            closeModal();
+            if (submitBtn) {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+              submitBtn.style.background = '';
+              submitBtn.style.color = '';
+            }
+          }, 4000);
         } else {
-          throw new Error('Transmission endpoint returned unsuccessful response');
+          throw new Error(data.message || 'Transmission endpoint returned unsuccessful response');
         }
       } catch (err) {
         console.warn('FormSubmit AJAX fallback:', err);
